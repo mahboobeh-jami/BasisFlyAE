@@ -1,0 +1,281 @@
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="[##cms.query.id##]"
+><member name="news-pre" type="view"/>
+</basis>
+<basis core="dbsource" name="db" source="media" lid="2" sourcemid="1" usedforid="[##cms.query.id##]"
+><member name="image-blog" type="list" format="4"/>
+</basis>
+<basis core="dbsource" name="db" source="media" lid="2" sourcemid="1" usedforid="[##cms.query.id##]"
+><member name="slider" type="list" format="4" postsql="select * from [db.slider] where ord=1" /></basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="[##cms.query.id##]"
+><member name="news-show" type="view"/>
+</basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="[##cms.query.id##]"
+><member name="related-blog" size="390x240" propertyid="7244,7249,7247" blgid="222" type="list" />
+</basis>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="[##cms.seo.description##]">
+        <link rel="canonical" href="[##cms.cms.full-url##]">
+        <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]" >
+            <member type="list" name="list" request="taglist" preview="" ></member></basis>
+        <basis core="print" datamembername="tag.list">
+            <face filter="key='canonical'">
+                <link rel="canonical" href="@value">
+            </face>
+            <face>
+                <meta property="@key" content="@value">
+            </face>
+        </basis>
+        <title>[##cms.seo.title##]</title>
+        <link href="[##cms.cms.cdn##]/css/basisflyae-main-mobile.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body class="dark:bg-dark">
+        <basis core="call" file="header.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
+        <basis core="print" datamembername="db.image-blog">
+            <layout>
+                <div class="w-full h-[360px] bg-cover bg-center bg-no-repeat" style="background-image: url([##cms.cms.cdn##]/[##db.slider.largeIMG##]);">
+                </div>
+                <section class="flex flex-col items-center justify-center text-center gap-4 mt-100 pt-6 dark:text-white px-2.5 py-9">@child<img class="m-auto mt-5 cursor-pointer" src="[##cms.cms.cdn##]/images/scroll-icon-mobile.png" width="34" height="35" alt="scroll-icon"/></section>
+            </layout>
+            <face>
+                <h1 class="text-2xl leading-8 font-bold">@name</h1>
+                <div class="font-medium text-xs leading-3">@description</div>
+            </face>
+        </basis>
+        <section class="mt-100 pt-6 dark:text-white px-2.5 py-9 text-justify bg-lightgray" id="blog_news">
+            <basis core="print" datamembername="db.news-show">
+                <face filter="typeid in (150)">
+                    <div class="text-sm font-bold leading-6">@text</div>
+                    <div class="text-sm font-normal leading-6 mb-3">@largetext</div>
+                </face>
+            </basis>
+            <basis core="print" datamembername="db.news-show">
+                <face filter="typeid in (129)">
+                    <div class="text-sm font-bold leading-6">@text</div>
+                    <div class="text-sm font-normal leading-6 mb-3">@largetext</div>
+                </face>
+            </basis>
+            <basis core="print" datamembername="db.image-blog">
+                <face filter="ord=2">
+                    <img src="[##cms.cms.cdn##]/@largeIMG" alt="@largeIMG">
+                </face>
+            </basis>
+            <basis core="print" datamembername="db.news-show">
+                <layout><div class="flex flex-col text-black gap-10 dark:text-white">@child</div></layout>
+                <face filter="typeid not in(159,150,160,161,162) and prpid not in (7249,7248,7247)">
+                    <span class="bg-orange w-[55px] h-[8px] mt-5"></span>
+                    <div class="text-sm font-bold leading-6">@text</div>
+                    <div class="text-sm font-normal leading-6 mb-3">@largetext</div>
+                </face>
+            </basis>
+            <div>
+                <div id="box_form" class="flex flex-col bg-white border-[1px] border-[#DEDEDE] w-full h-fit px-3 pt-10 py-9 gap-6 dark:border-none dark:bg-dark2 dark:text-white">
+                    <p class="text-sm font-bold leading-6">Subscribe to our Newsletters</p>
+                    <p class="text-sm font-normal leading-6 mb-3">Stay in touch with us to receive the latest Travel Technology news.</p>
+                    <basis core="schema" run="atclient" schemaUrl="https://basispanel.ir/schema/domainform" 
+                    schemaUrl="/72B84A8B-80E2-4636-977F-243E512CCD75/57FE980E-9459-4C66-9C65-FDD0376C3D06/en/Subscribe-to-our-Newsletters" displayMode="new" button="[data-btn-add]" resultSourceId="form.submit" OnRendered="formRendered" ></basis>
+                    <basis core="callback" run="AtClient" triggers="form.submit" method="onSource" ></basis>
+                    <Basis core="api" url="https://basispanel.ir/schema/domainform/72B84A8B-80E2-4636-977F-243E512CCD75/fa/editobject" method="post" run="atclient" body="object_edit={##edit.object.value##}&captcha={##edit.object.captcha##}&captchaid={##edit.object.captchaid##}" content-type="application/x-www-form-urlencoded" triggers="edit.object" if="{##edit.object|(false)##}" OnProcessed="OnProcessedEditObject" ></Basis>
+                    <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh" data-bc-answer-container="" data-bc-schema-info-multi="0" data-bc-schema-info-word="58" data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text" >
+                        <basis core="dbsource" source="trust_login" name="captcha" run="atclient" triggers="captcha.refresh" ><member name="code1" type="scalar" request="captcha"></member></basis>
+                        <basis datamembername="captcha.code1" core="print" run="atclient" OnRendered="captchaRendered" >
+                            <face><script type="text/template"><div class="flex flex-row items-center relative"><input type="text" class="contactUsInput codeinputm" name="captcha" maxlength="4" placeholder="" /><input type="hidden" name="captchaid" value="@captcha@" /><div class="absolute absolute right-[2px] top-[1px] flex flex-row-reverse items-center gap-2"><img src="https://www.basispanel.ir/@captcha@" width="88" height="49" style="height:49px;" /><svg class="cursor-pointer" width="35" height="25" onclick="refreshCaptcha()" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.6498 3.34999C12.0198 1.71999 9.70978 0.779992 7.16978 1.03999C3.49978 1.40999 0.479777 4.38999 0.0697772 8.05999C-0.480223 12.91 3.26978 17 7.99978 17C11.1898 17 13.9298 15.13 15.2098 12.44C15.5298 11.77 15.0498 11 14.3098 11C13.9398 11 13.5898 11.2 13.4298 11.53C12.2998 13.96 9.58978 15.5 6.62978 14.84C4.40978 14.35 2.61978 12.54 2.14978 10.32C1.30978 6.43999 4.25978 2.99999 7.99978 2.99999C9.65978 2.99999 11.1398 3.68999 12.2198 4.77999L10.7098 6.28999C10.0798 6.91999 10.5198 7.99999 11.4098 7.99999H14.9998C15.5498 7.99999 15.9998 7.54999 15.9998 6.99999V3.40999C15.9998 2.51999 14.9198 2.06999 14.2898 2.69999L13.6498 3.34999Z" fill="#000000" /></svg></div></div></script></face></basis>
+                    </div>
+                    <div class="flex flex-row items-center gap-3 mt-5 2xl:flex-nowrap lg:flex-wrap">
+                        <div onclick="formClickHandler()" data-btn-add class="button-wrap-p w-fit relative">
+                            <button>Subscribe</button>
+                        </div>
+                        <p class="alert hidden font-[500] text-[20px] leading-[25.2px] text-yellow">test</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+            <basis core="print" datamembername="db.related-blog">
+                <layout><section class="bg-black flex flex-col items-center justify-center gap-3 dark:text-white px-2.5 py-3"><p class="text-white text-sm font-bold leading-6 mb-3">Related News</p>@child</section></layout>
+                <face filter="link is null">
+                    <article class="col-news w-full mb-5">
+                        <a href="/news?id=@id" class="block m-0-auto w-[300px] h-[420px] relative">
+                            <figure class="w-full h-[200px]">
+                                <img class="w-full h-full" src="[##cms.cms.cdn##]/@00390X00240prp" width="390" height="240" alt="@title"/>
+                            </figure>
+                            <header class="pt-3 px-4 text-white">
+                                <div class="flex flex-row-reverse items-center justify-between mb-3">
+                                    <div class="flex flex-row-reverse items-center gap-4"><p class="t-p2">@prp_7247</p></div>
+                                    <div class="flex flex-row items-center gap-2 text-white">
+                                        <img src="[##cms.cms.cdn##]/images/topic-mobile.svg" width="11" height="12" alt="topic">
+                                        <p class="t-p2 text-white">@Column1</p>
+                                        <p class="t-p2 text-white">@prp_7249</p>
+                                    </div>
+                                </div>
+                                <h2 class="text-xl font-bold leading-6 ectText--2">@title</h2>
+                                <div class="mt-5">
+                                    <p class="text-sm leading-5 ectText--2">@prp_7244</p>
+                                </div>
+                            </header>
+                            <footer class="pb-3 px-4 absolute bottom-0 left-0">
+                                <div class="flex flex-row-reverse items-center gap-4">
+                                    <p class="text-base text-blue dark:text-white">read more</p>
+                                    <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
+                                </div>
+                            </footer>
+                        </a>
+                    </article>
+                </face>
+                <face>
+                    <article class="col-news w-full mb-5">
+                        <a href="/@link" class="block m-0-auto w-[300px] h-[420px] relative">
+                            <figure class="w-full h-[200px]">
+                                <img class="w-full h-full" src="[##cms.cms.cdn##]/@00390X00240prp" width="390" height="240" alt="@title"/>
+                            </figure>
+                            <header class="pt-3 px-4 text-white">
+                                <div class="flex flex-row-reverse items-center justify-between mb-3">
+                                    <div class="flex flex-row-reverse items-center gap-4"><p class="t-p2">@prp_7247</p></div>
+                                    <div class="flex flex-row items-center gap-2 text-white">
+                                        <img src="[##cms.cms.cdn##]/images/topic-mobile.svg" width="11" height="12" alt="topic">
+                                        <p class="t-p2 text-white">@Column1</p>
+                                        <p class="t-p2 text-white">@prp_7249</p>
+                                    </div>
+                                </div>
+                                <h2 class="text-xl font-bold leading-6 ectText--2">@title</h2>
+                                <div class="mt-5">
+                                    <p class="text-sm leading-5 ectText--2 text-white">@prp_7244</p>
+                                </div>
+                            </header>
+                            <footer class="pb-3 px-4 absolute bottom-0 left-0">
+                                <div class="flex flex-row-reverse items-center gap-4">
+                                    <p class="text-base text-blue dark:text-white">read more</p>
+                                    <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
+                                </div>
+                            </footer>
+                        </a>
+                    </article>
+                </face>
+            </basis>
+       
+        <section class="alertOverlay hidden flex-row items-center justify-center w-screen h-screen fixed left-0 right-0 top-0 bottom-0 bg-black opacity-25"></section>
+        <div href="/request.bc" class="alertBtnF button-wrap-s2 hidden">
+            <button>Wrong or Invalid email address. Please correct and try again.</button>
+        </div>
+        <div href="/request.bc" class="alertBtnS button-wrap-s2 hidden">
+            <button class="flex flex-col items-center justify-center gap-3">Your request has been registered
+                <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M13.5 15.583L20.2875 20.6747C20.708 20.99 21.2322 21.1348 21.7549 21.0799C22.2777 21.0251 22.7604 20.7746 23.1062 20.3788L36.4167 5.16633"
+                        stroke="#FFF"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+                    <path
+                        d="M38.5 19.7497C38.5001 23.6674 37.2729 27.4868 34.991 30.6714C32.709 33.8559 29.4868 36.2457 25.7769 37.505C22.0671 38.7643 18.0559 38.8299 14.3069 37.6925C10.5578 36.5552 7.25922 34.2721 4.87432 31.1639C2.48942 28.0556 1.13805 24.2784 1.01002 20.3628C0.881984 16.4471 1.98371 12.5897 4.16047 9.33229C6.33722 6.07489 9.47964 3.58117 13.1464 2.20136C16.8131 0.821556 20.82 0.62498 24.6042 1.63924"
+                        stroke="#FFF"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+                </svg>
+            </button>
+        </div>
+        <basis core="call" lid="2" file="footer.inc"  pageindex="[##cms.cms.pageindex##]"></basis>
+        <basis core="call" file="script.inc" lid="2"/>
+        <basis
+            core="dbsource"
+            source="basiscore"
+            name="db"
+            lid="1"
+            mid="1"
+            usedforid="[##cms.query.id##]"
+        >
+            <member request="json-ld" type="scalar" name="json"/>
+        </basis>
+
+        <script type="application/ld+json">[##db.json.Column1##]</script>
+
+
+        <script type="text/javascript">
+
+        function onSource(args){ const captcha=document.querySelector("#captchaContainer input[name='captcha']").value; const captchaid=document.querySelector("#captchaContainer input[name='captchaid']").value; 
+        const stringJson=JSON.stringify(args.source?.rows[0]); $bc.setSource('edit.object',{ value: stringJson, captcha: captcha, captchaid: captchaid})} 
+        
+        async function OnProcessedEditObject(args){ 
+            var response=args.response;
+             var json=await response.json();
+              var errorid=json.errorid;
+               let alert=document.querySelector(".alert");
+                const loadingButton=document.querySelector("[data-btn-add] button");
+                 loadingButton.textContent=``; loadingButton.textContent="Subscribe";
+                  if (errorid=="6"){ document.querySelector(".alertOverlay").style.display="flex";
+                   document.querySelector(".alertBtnS").style.display="flex"; 
+        refreshCaptcha();
+         setTimeout(()=>{ document.querySelector(".alertOverlay").style.display="none";
+          document.querySelector(".alertBtnS").style.display="none";
+           alert.style.display="block";
+           alert.innerHTML="Your request has been registered";}, 2000);} 
+        else{ document.querySelector(".alertOverlay").style.display="flex";
+         document.querySelector(".alertBtnF").style.display="flex";
+          refreshCaptcha(); document.querySelectorAll("input")[0].focus();
+           document.getElementById("blog_news").style.scrollMarginTop="99.5px";
+            document.getElementById("blog_news").scrollIntoView(); setTimeout(()=>{ 
+                document.querySelector(".alertOverlay").style.display="none"; 
+                document.querySelector(".alertBtnF").style.display="none";
+                 alert.style.display="block"; alert.innerHTML="Wrong or Invalid email address. Please correct and try again.";
+                }, 2000);}} 
+        
+        function refreshCaptcha(e){ $bc.setSource("captcha.refresh", true);}; 
+        function captchaRendered(){ 
+            document.querySelector(".contactUsInput").placeholder="Enter Captcha";}
+        function formRendered(){
+            document.querySelector(".email-sub > input").placeholder="example@gmail.com";}
+
+
+        function formClickHandler(){ 
+            if (document.querySelector(".contactUsInput").value) {
+                let checkQusReq = [];
+                document.querySelectorAll("input").forEach(el => {
+                    if (el.value) {
+                        checkQusReq.push(el);
+                    }
+                })
+                if (document.querySelector("[data-bc-answer-container] input[type='text']").value) {
+                    const loadingButton = document.querySelector("[data-btn-add] button");
+                    loadingButton.textContent = "";
+                    loadingButton.innerHTML = `<span class="button--loading"></span>`;
+                } else {
+                    let inputEmpty = [];
+                    document.querySelectorAll("input").forEach(el => {
+                        if (!(el.value)) {
+                            inputEmpty.push(el);
+                        }
+                    })
+                    inputEmpty[0].focus();
+                    inputEmpty[0].style.scrollMarginTop = "199px";
+                    inputEmpty[0].scrollIntoView();
+                }
+
+            } else {
+                let inputEmpty = [];
+                document.querySelectorAll("input").forEach(el => {
+                    if (!(el.value)) {
+                        inputEmpty.push(el);
+                    }
+                })
+                inputEmpty[0].focus();
+                inputEmpty[0].style.scrollMarginTop = "199px";
+                inputEmpty[0].scrollIntoView();
+            }        
+        }
+        </script>
+    </body>
+    <style>
+    [data-bc-validation-part]{ display: none !important;}
+    legend, [data-bc-title-container]{ display: none !important;} [data-bc-answer-container], [data-bc-answer-collection], [data-bc-answer], [data-bc-part-container], [data-bc-schema-info-part="1"] [data-bc-part-related-cell], [data-bc-answer-container] input[type="text"]{ width: 100% !important; height: 51px !important;} [data-bc-part-related-cell]{ margin-left: 0px !important;} [data-bc-answer-container] input[type="text"]{ padding: 0.5rem 1rem !important; font-weight: 400 !important; font-size: 20px !important; line-height: 25.2px !important; background-color: #FFFFFF; border: 1px solid #000000 !important; border-radius: 0px !important; color: #000000;} [data-bc-answer-container] input[type="text"]:focus{ outline: none !important; box-shadow: none !important; background-color: #FFFFFF; border-color: #000000 !important;} [data-bc-section]{ margin-bottom: 0px !important; padding: 0px !important;} ::placeholder{ color: #000000 !important; opacity: 1; }
+    </style>
+</html>

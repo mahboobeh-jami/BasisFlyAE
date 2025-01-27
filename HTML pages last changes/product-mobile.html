@@ -1,0 +1,193 @@
+<basis core="dbsource" name="db" source="basiscore" lid="[##cms.query.lid|(2)##]" mid="20" usedforid="[##cms.query.id##]">
+    <member name="product" type="view" />
+    <member name="description" type="view" postsql="select * from [db.description] where TypeID = 144 and largetext is not null"/>
+  </basis>
+  
+  <basis core="dbsource" name="db" source="media" lid="[##cms.query.lid|(2)##]" sourcemid="20" usedforid="[##cms.query.id##]">
+    <member name="productGallery" type="list" format="4" />
+  </basis>
+  <basis core="dbsource" source="basiscore" name="db" mid="20" lid="2" usedforid="[##cms.query.id##]">
+    <member name="relatedproduct" type="list" blgid="18" propertyid="" typeid="159" link="" perpage="" />
+    <member name="relatedcount"  type="list" blgid="18" propertyid="" typeid="159" link="" postsql="select count(*) from [db.relatedcount]" />
+</basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="20" catid="206355">
+    <member name="defproduct" type="list" propertyid="8616" size="57x57"
+        postsql=" select *, SUBSTR(prp_8616, 1,200-CHARINDEX(' ', REVERSE(SUBSTR(prp_8616, 1, 200)))) || '...' as substr from [db.defproduct]" />
+</basis>
+<basis core="inlinesource" name="joining">
+    <member name="list" lefttblcol="db.defproduct.id" righttblcol="db.relatedproduct.id" format="join" jointype="leftjoin" preview=""   />
+</basis>
+  
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[##cms.seo.description##]">
+    <link rel="canonical" href="[##cms.cms.full-url##]" />
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+        <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+        <face filter="key = 'canonical'">
+            <link rel="canonical" href="@value" />
+        </face>
+        <face>
+            <meta property="@key" content="@value" />
+        </face>
+    </basis>
+    <link href="[##cms.cms.cdn##]/css/basisflyae-main-mobile.css" type="text/css" rel="stylesheet" />
+    <title>[##cms.seo.title##]</title>
+  </head>
+  
+  <body class="dark:bg-dark">
+  
+    <basis core="call" file="header.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
+    <div class="list-page-banner mt-100 flex flex-col items-start justify-center text-white gap-8 relative w-full h-[230px]"></div>
+    <basis core="print" datamembername="db.productGallery">
+        <layout>
+            <section class="container flex flex-col items-center justify-center gap-3 dark:text-white mb-4 px-2.5 py-9">
+                <img src="[##cms.cms.cdn##]/images/product-topicon-mobile.png" width="104" height="104" alt="product-topicon-mobile"/>
+                @child
+                <img class="m-auto mt-2 cursor-pointer" src="[##cms.cms.cdn##]/images/scroll-icon-mobile.png" width="34" height="35" alt="scroll-icon"/>
+            </section>
+        </layout>
+        <face filter="ord = 1">
+            <div class="text-center">
+                <h1 class="t-h3 inline-block ml-1 mb-5">@name</h1>
+            </div>
+            <div class="text-center">
+                <h2 class="t-p1">@description</h2>
+            </div>
+        </face>
+    </basis>
+  
+    <section class="container py-9 flex flex-col items-center justify-center gap-4 dark:text-white px-2.5">
+        <img src="[##cms.cms.cdn##]/images/topic.svg" alt="topic">
+        <p class="t-p2">PRODUCT AND SOLUTION</p>
+        <basis core="print" datamembername="db.description">
+            <face filter="RowNumber = 1">
+                <div id="boxText1" class="text-center text-xs">
+                    @Answer
+                </div>
+            </face>
+        </basis>
+    </section>
+    <basis core="group" if="'[##db.relatedcount.count(*)##]'>'0'" name="exist_relatedproduct">
+        <basis core="print" datamembername="joining.list">
+            <layout>
+                   <section class="grid grid-cols-3 pt-6 gap-y-10 gap-x-10 px-2.5 py-9">
+                       @child
+                   </section>
+               </layout>
+               <else-layout></else-layout>
+                <face filter="db.relatedproduct.title is null">
+                <div class="flex flex-col items-center justify-between">
+                       <img src="/@db.defproduct.00057X00057prp" alt="@db.defproduct.title" width="auto" height="30" class="opacity-25 w-auto h-[30px] dark:invert">
+                       <svg class="-mt-[10px] -mr-[25px]" width="20" height="17" viewBox="0 0 25 22" fill="none">
+                           <path
+                               d="M18.4611 21.4345H6.53809L0.577148 11.1237L6.53809 0.812866H18.4611L24.4221 11.1237L18.4611 21.4345Z"
+                               fill="white" />
+                           <path
+                               d="M6.82696 1.31287L1.15508 11.1237L6.82696 20.9345H18.173L23.8449 11.1237L18.173 1.31287H6.82696ZM6.25 0.312866H18.75L25 11.1237L18.75 21.9345H6.25L0 11.1237L6.25 0.312866Z"
+                               fill="#AAAAAA" />
+                           <path d="M17.7363 1.66479L22.9723 11.1238L17.7363 20.5828H7.26334L2.02734 11.1238L7.26334 1.66479H17.7363Z"
+                               fill="#AAAAAA" />
+                           <path d="M15.8213 7.29785L17.3042 8.63574L10.9854 14.9498L7.69629 11.6738V11.6158L9.10938 10.0668L11.0454 12.0219C11.1184 11.9529 11.1884 11.8878 11.2554 11.8218C12.696 10.3851 14.1367 8.94808 15.5774 7.51074C15.6444 7.44374 15.7024 7.36885 15.7644 7.29785H15.8213Z"
+                               fill="white" />
+                       </svg>
+                       <p class="text-sm opacity-25 dark:text-white">@db.defproduct.title</p>
+                   </div>
+                </face>
+                <face filter="db.relatedproduct.title is not null">
+                   <a href="@db.relatedproduct.link" class="flex flex-col items-center justify-between">
+                       <img src="/@db.relatedproduct.type_159" alt="@db.defproduct.title" width="auto" height="30" class="w-auto h-[30px] dark:invert">
+                       <svg class="-mt-[10px] -mr-[25px]" width="20" height="17" viewBox="0 0 25 22" fill="none">
+                           <path
+                               d="M18.4611 21.3024H6.53809L0.577148 10.9916L6.53809 0.680786H18.4611L24.4221 10.9916L18.4611 21.3024Z"
+                               fill="white" />
+                           <path
+                               d="M6.82696 1.18079L1.15508 10.9916L6.82696 20.8024H18.173L23.8449 10.9916L18.173 1.18079H6.82696ZM6.25 0.180786H18.75L25 10.9916L18.75 21.8024H6.25L0 10.9916L6.25 0.180786Z"
+                               fill="#31E3FD" />
+                           <path
+                               d="M17.7363 1.53271L22.9723 10.9917L17.7363 20.4507H7.26334L2.02734 10.9917L7.26334 1.53271H17.7363Z"
+                               fill="#03BDFE" />
+                           <path
+                               d="M15.8213 7.16583L17.3042 8.50372L10.9854 14.8178L7.69629 11.5418V11.4838L9.10938 9.93475L11.0454 11.8898C11.1184 11.8208 11.1884 11.7558 11.2554 11.6898C12.696 10.2531 14.1367 8.81606 15.5774 7.37872C15.6444 7.31172 15.7024 7.23683 15.7644 7.16583H15.8213Z"
+                               fill="white" />
+                       </svg>
+                       <p class="text-sm dark:text-white">@db.defproduct.title</p>
+                   </a>
+               </face>
+    </basis>
+    </basis>
+
+  
+  
+    <basis core="print" datamembername="db.description">
+        <layout>
+            <section class="container py-9 flex flex-col items-center justify-center gap-4 px-2.5">
+                <img src="[##cms.cms.cdn##]/images/topic.svg" alt="topic">
+                <p class="t-p2 dark:text-white">PRODUCT AND SOLUTION</p>
+                @child
+            </section>
+        </layout>
+        <else-layout>
+        </else-layout>
+        <face filter="RowNumber=2">
+            <div id="boxText2" class="text-center text-xs dark:text-white">
+                @Answer
+            </div>
+        </face>
+    </basis>
+  
+    <basis core="print" datamembername="db.productGallery">
+        <layout>
+            <section class="grid grid-cols-3 pt-10 container gap-10 px-2.5 py-9">
+                @child
+            </section>
+        </layout>
+        <else-layout>
+        </else-layout>
+        <face filter="ord = 1000">
+            <div class="flex flex-col items-center justify-between gap-4">
+                <div class="abt-white">
+                    <section>
+                        <img src="/@largeIMG" class="t-p2 px-3">
+                    </section>
+                </div>
+                <p class="t-p4 text-center dark:text-white">@name</p>
+            </div>
+        </face>
+    </basis>
+  
+    <section class="pb-40 pt-60 relative px-2.5 py-9">
+        <div id="footerProduct" class="absolute right-0 left-0 top-0 w-screen h-full"></div>
+        <div class="w-[30%] text-white flex flex-col items-center mx-auto gap-8 text-center relative z-10 dark:text-white">
+            <p class="leading-8 font-semibold text-2xl">Request a Demo</p>
+            <p class="leading-5 text-sm">Basisfly products & solutions, the <span class="t-p4">leading technology</span> for the
+                travel
+                market</p>
+            <a href="/request" class="w-fit">
+                <div class="button-wrap-p button-wrap-p-white">
+                    <button>Request</button>
+                </div>
+            </a>
+        </div>
+    </section>
+  
+    <div class="-mt-32">
+        <basis core="call" file="footer.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
+    </div>
+  
+    <basis core="dbsource" source="basiscore" name="db" lid="1" mid="1" usedforid="[##cms.query.id##]">
+        <member request="json-ld" type="scalar" name="json" />
+    </basis>
+    <script type="application/ld+json">
+       [##db.json.Column1##]
+    </script>
+  
+  </body>
+  
+  </html>

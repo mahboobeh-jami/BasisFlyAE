@@ -1,0 +1,81 @@
+<basis core="dbsource" source="basiscore" name="db" lid="2" mid="20">
+    <member request="cat" type="tree" name="product" parentid="205734" />
+</basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="20" catid="205734">
+    <member name="productList" type="list" propertyid="8616"
+        postsql=" select *, SUBSTR(prp_8616, 1,200-CHARINDEX(' ', REVERSE(SUBSTR(prp_8616, 1, 200)))) || '...' as substr from [db.productList]" />
+</basis>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[##cms.seo.description##]">
+    <link rel="canonical" href="[##cms.cms.full-url##]" />
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+        <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+        <face filter="key='canonical'">
+            <link rel="canonical" href="@value" />
+        </face>
+        <face>
+            <meta property="@key" content="@value" />
+        </face>
+    </basis>
+    <link href="[##cms.cms.cdn##]/css/basisflyae-main-mobile.css" type="text/css" rel="stylesheet" />
+    <title>[##cms.seo.title##]</title>
+</head>
+
+<body class="dark:bg-dark">
+    <basis core="call" file="header.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
+    <div class="list-page-banner mt-100 flex flex-col items-start justify-center text-white gap-8 relative w-full h-[230px]"></div>
+
+    <section class="container flex flex-col items-center justify-center gap-4 dark:text-white mb-4">
+        <img src="[##cms.cms.cdn##]/images/brain-pic.png" width="104" height="104" alt="brain-pic"/>
+        <div class="text-center"><span class="t-h1 inline-block">Basisfly </span><h1 class="t-h3 inline-block ml-1">Solutions</h1>
+            <p class="t-h3 font-normal">for the travel market</p>
+        </div>
+        <div class="text-center">
+            <p class="t-p1">The most complete, customisable, and robust booking engine for</p>
+            <p class="t-p1">Incoming Agencies (DMC), Travel Agencies (OTA), Bed Banks, Airlines GSA, White Label, and Tour Operators</p>
+            <p class="t-p1">Basisfly offers technology solution for:</p>
+        </div>
+        <img class="m-auto mt-2 cursor-pointer" src="[##cms.cms.cdn##]/images/scroll-icon-mobile.png" width="34" height="35" alt="scroll-icon"/>
+    </section>
+    <section class="container flex flex-col items-center justify-center gap-4 dark:text-white">
+        <basis core="print" datamembername="db.productList">
+            <layout>
+                @child
+            </layout>
+            <face filter="link is null">
+                <a href="/product?id=@id" class="product-s w-[300px] h-[300px] m-auto my-5 block text-center">
+                    <section class="dark:bg-dark2-imp h-full">
+                        <div class="product-box-s flex flex-col gap-7 p-16 dark:text-white dark:bg-product-list space-y-3 h-full px-6 py-8">
+                            <img src="[##cms.cms.cdn##]/@image" width="62" height="62" alt="@title" class="transition-all duration-300 dark:invert m-0-auto mb-5"/>
+                            <h2 class="text-2xl font-bold transition-all duration-300 mb-3">@title</h2>
+                            <p class="text-sm transition-all duration-300 mb-5 ectText--2">@substr</p>
+                            <div class="button-wrap-b m-0-auto hover:bg-color-2"><button>Products</button></div>
+                        </div>
+                    </section>
+                </a>
+            </face>
+            <face>
+                <a href="/@link" class="product-s w-[300px] h-[300px] m-auto my-5 block text-center">
+                    <section class="dark:bg-dark2-imp h-full">
+                        <div class="product-box-s flex flex-col gap-7 p-16 dark:text-white dark:bg-product-list space-y-3 h-full px-6 py-8">
+                            <img src="[##cms.cms.cdn##]/@image" width="62" height="62" alt="@title" class="transition-all duration-300 dark:invert m-0-auto mb-5"/>
+                            <h2 class="text-2xl font-bold transition-all duration-300 mb-3">@title</h2>
+                            <p class="text-sm transition-all duration-300 mb-5 ectText--2">@substr</p>
+                            <div class="button-wrap-b m-0-auto hover:bg-color-2"><button>Products</button></div>
+                        </div>
+                    </section>
+                </a>
+            </face>
+        </basis>
+    </section>
+    <basis core="call" file="footer.inc" lid="2" pageindex="[##cms.cms.pageindex##]" />
+</body>
+
+</html>

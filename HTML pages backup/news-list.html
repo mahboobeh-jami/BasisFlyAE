@@ -1,0 +1,253 @@
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2337263">
+    <member name="about" type="view" />
+</basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" catid="205735">
+    <member name="news-list" size="490x297" propertyid="7244,7249,7247" type="list" order="date desc" request="catname" />
+</basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2362592">
+    <member name="last-news" size="1536X694" propertyid="7244,7249,7247" type="list" order="date desc" request="catname" />
+</basis>
+<basis core="dbsource" name="db" source="media" lid="2" sourcemid="1" usedforid="2362592">
+    <member name="productGallery" type="list" format="4" />
+</basis>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[##cms.seo.description##]">
+    <link rel="canonical" href="[##cms.cms.full-url##]" />
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+        <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+        <face filter="key='canonical'">
+            <link rel="canonical" href="@value" />
+        </face>
+        <face>
+            <meta property="@key" content="@value" />
+        </face>
+    </basis>
+    <basis core="call" file="style.inc" lid="2" />
+    <title>[##cms.seo.title##]</title>
+</head>
+
+<body class="dark:bg-dark">
+    <basis core="call" file="header.inc" lid="2"></basis>
+    <section class="container flex flex-col items-center justify-center text-center gap-4 mt-100 pt-20 dark:text-white">
+        <basis core="print" datamembername="db.about">
+            <face filter="TypeID=128">
+                <h1 class="font-[700] text-[79px] leading-[99.54px] w-[65%]">@Answer</h1>
+            </face>
+        </basis>
+        <basis core="print" datamembername="db.about">
+            <face filter="TypeID=129">
+                <div class="w-[50%] t-p1">@largetext </div>
+            </face>
+        </basis>
+        <div class="flex flex-row items-center justify-center w-[50%] gap-4 mt-10"><a href="#Last_News" class="w-fit">
+                <div class="button-wrap-p pt-5"><button>Last News</button></div>
+            </a><a href="/about-us" class="w-fit">
+                <div class="button-wrap-b2 mt-5 dark:text-white">About Us </div>
+            </a></div>
+    </section>
+    <basis core="print" datamembername="db.last-news">
+        <face filter="prp_7247 is null and link is null">
+            <section id="Last_News" class="container bg-contain bg-no-repeat h-[600px] relative mb-40 mt-1 gap-2"
+                style="background-image: url(/[##db.productGallery.largeIMG##]);"><a href="/news?id=@id"
+                    class="group transition-all duration-300 cursor-pointer w-[80%] bg-white dark:bg-dark2 dark:text-white px-16 py-8 absolute left-0 right-0 mx-auto -bottom-[50px] xl:h-[40vh] flex flex-col gap-4"
+                    style="box-shadow: 0px 8px 6px 0px #00000029;">
+                    <div class="flex flex-row-reverse items-center gap-1.5" style="justify-content: end;"><svg
+                            width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                class="group-hover:stroke-yellow transition-all duration-300 dark:stroke-white dark:group-hover:stroke-yellow"
+                                d="M0.560547 2.43994H15.0488V17.1689" stroke="black" stroke-width="3" />
+                            <path
+                                class="group-hover:stroke-yellow transition-all duration-300 dark:stroke-white dark:group-hover:stroke-yellow"
+                                d="M1.23828 16.4569L15.3516 2.34399" stroke="black" stroke-width="3" />
+                        </svg>
+                        <p class="t-p1 text-gray group-hover:text-yellow transition-all duration-300"></p>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <p class="t-p2 group-hover:text-blue transition-all duration-300">Last news</p>
+                    </div>
+                    <div class="flex flex-col gap-1 group-hover:text-gray transition-all duration-300">
+                        <div class="t-h2 w-[60%]">@title</div>
+                    </div>
+                    <div class="flex flex-col gap-1 group-hover:text-blue transition-all duration-300">
+                        <div class="t-p1 w-[60%] ectText--3">@prp_7244</div>
+                    </div>
+                </a></section>
+        </face>
+        <face filter="prp_7247 is null">
+            <section id="Last_News" class="container bg-contain bg-no-repeat h-[600px] relative mb-40 mt-1 gap-2"
+                style="background-image: url(/[##db.productGallery.largeIMG##]);"><a href="/@link"
+                    class="group transition-all duration-300 cursor-pointer w-[80%] bg-white dark:bg-dark2 dark:text-white px-16 py-8 absolute left-0 right-0 mx-auto -bottom-[50px] xl:h-[40vh] flex flex-col gap-4"
+                    style="box-shadow: 0px 8px 6px 0px #00000029;">
+                    <div class="flex flex-row-reverse items-center gap-1.5" style="justify-content: end;"><svg
+                            width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                class="group-hover:stroke-yellow transition-all duration-300 dark:stroke-white dark:group-hover:stroke-yellow"
+                                d="M0.560547 2.43994H15.0488V17.1689" stroke="black" stroke-width="3" />
+                            <path
+                                class="group-hover:stroke-yellow transition-all duration-300 dark:stroke-white dark:group-hover:stroke-yellow"
+                                d="M1.23828 16.4569L15.3516 2.34399" stroke="black" stroke-width="3" />
+                        </svg>
+                        <p class="t-p1 text-gray group-hover:text-yellow transition-all duration-300"></p>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <p class="t-p2 group-hover:text-blue transition-all duration-300">Last news</p>
+                    </div>
+                    <div class="flex flex-col gap-1 group-hover:text-gray transition-all duration-300">
+                        <div class="t-h2 w-[60%]">@title</div>
+                    </div>
+                    <div class="flex flex-col gap-1 group-hover:text-blue transition-all duration-300">
+                        <div class="t-p1 w-[60%] ectText--3">@prp_7244</div>
+                    </div>
+                </a></section>
+        </face>
+        <face filter="prp_7247 is not null and link is null">
+            <section id="Last_News" class="container bg-contain bg-no-repeat h-[600px] relative mb-40 mt-1 gap-2"
+                style="background-image: url(/[##db.productGallery.largeIMG##]);"><a href="/news?id=@id"
+                    class="group transition-all duration-300 cursor-pointer w-[80%] bg-white dark:bg-dark2 dark:text-white px-16 py-8 absolute left-0 right-0 mx-auto -bottom-[50px] xl:h-[40vh] flex flex-col gap-4"
+                    style="box-shadow: 0px 8px 6px 0px #00000029;">
+                    <div class="flex flex-row-reverse items-center gap-1.5" style="justify-content: end;"><svg
+                            width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                class="group-hover:stroke-yellow transition-all duration-300 dark:stroke-white dark:group-hover:stroke-yellow"
+                                d="M0.560547 2.43994H15.0488V17.1689" stroke="black" stroke-width="3" />
+                            <path
+                                class="group-hover:stroke-yellow transition-all duration-300 dark:stroke-white dark:group-hover:stroke-yellow"
+                                d="M1.23828 16.4569L15.3516 2.34399" stroke="black" stroke-width="3" />
+                        </svg>
+                        <p class="t-p1 text-gray group-hover:text-yellow transition-all duration-300">@prp_7247</p>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <p class="t-p2 group-hover:text-blue transition-all duration-300">Last news</p>
+                    </div>
+                    <div class="flex flex-col gap-1 group-hover:text-gray transition-all duration-300">
+                        <div class="t-h2 w-[60%]">@title</div>
+                    </div>
+                    <div class="flex flex-col gap-1 group-hover:text-blue transition-all duration-300">
+                        <div class="t-p1 w-[60%] ectText--3">@prp_7244</div>
+                    </div>
+                </a></section>
+        </face>
+        <face filter="prp_7247 is not null">
+            <section id="Last_News" class="container bg-contain bg-no-repeat h-[600px] relative mb-40 mt-1 gap-2"
+                style="background-image: url(/[##db.productGallery.largeIMG##]);"><a href="/@link"
+                    class="group transition-all duration-300 cursor-pointer w-[80%] bg-white dark:bg-dark2 dark:text-white px-16 py-8 absolute left-0 right-0 mx-auto -bottom-[50px] xl:h-[40vh] flex flex-col gap-4"
+                    style="box-shadow: 0px 8px 6px 0px #00000029;">
+                    <div class="flex flex-row-reverse items-center gap-1.5" style="justify-content: end;"><svg
+                            width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                class="group-hover:stroke-yellow transition-all duration-300 dark:stroke-white dark:group-hover:stroke-yellow"
+                                d="M0.560547 2.43994H15.0488V17.1689" stroke="black" stroke-width="3" />
+                            <path
+                                class="group-hover:stroke-yellow transition-all duration-300 dark:stroke-white dark:group-hover:stroke-yellow"
+                                d="M1.23828 16.4569L15.3516 2.34399" stroke="black" stroke-width="3" />
+                        </svg>
+                        <p class="t-p1 text-gray group-hover:text-yellow transition-all duration-300">@prp_7247</p>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <p class="t-p2 group-hover:text-blue transition-all duration-300">Last news</p>
+                    </div>
+                    <div class="flex flex-col gap-1 group-hover:text-gray transition-all duration-300">
+                        <div class="t-h2 w-[60%]">@title</div>
+                    </div>
+                    <div class="flex flex-col gap-1 group-hover:text-blue transition-all duration-300">
+                        <div class="t-p1 w-[60%] ectText--3">@prp_7244</div>
+                    </div>
+                </a></section>
+        </face>
+    </basis>
+    <section class="grid lg:grid-cols-2 2xl:grid-cols-3 container pt-24 gap-16">
+        <basis core="print" datamembername="db.news-list">
+            <face filter="prp_7247 is null and link is null">
+                
+                <a href="/news?id=@id"
+                    class="group transition-all duration-300 flex flex-col gap-7 "><img
+                        src="[##cms.cms.cdn##]/@00490X00297prp" alt="@title"
+                        class="group-hover:opacity-50 transition-all duration-300 w-full">
+                    <div class="flex flex-row-reverse items-center justify-between">
+                        <div class="flex flex-row-reverse items-center gap-4"><img
+                                src="[##cms.cms.cdn##]/images/arrow.svg" alt="arrow" class="dark:invert">
+                            <p class="t-p2 dark:text-white">@prp_7247</p>
+                        </div>
+                        <div class="flex flex-row items-center gap-2 text-gray"><img
+                                src="[##cms.cms.cdn##]/images/topic.svg" alt="topic">
+                            <p class="t-p2 text-gray group-hover:text-blue transition-all duration-300">@Column1</p>
+                            <span class="w-[1.5px] h-5 bg-gray group-hover:bg-blue transition-all duration-300"></span>
+                            <p class="t-p2 text-gray group-hover:text-blue transition-all duration-300">@prp_7249</p>
+                        </div>
+                    </div>
+                    <p class="t-h2 group-hover:text-blue transition-all duration-300 dark:text-white">@title</p>
+                    <p class="t-p2 group-hover:text-blue transition-all duration-300 dark:text-white">@prp_7244</p>
+                </a></face>
+            <face filter="prp_7247 is null">
+                
+                <a href="/@link"
+                    class="group transition-all duration-300 flex flex-col gap-7 "><img
+                        src="[##cms.cms.cdn##]/@00490X00297prp" alt="@title"
+                        class="group-hover:opacity-50 transition-all duration-300 w-full">
+                    <div class="flex flex-row-reverse items-center justify-between">
+                        <div class="flex flex-row-reverse items-center gap-4"><img
+                                src="[##cms.cms.cdn##]/images/arrow.svg" alt="arrow" class="dark:invert">
+                            <p class="t-p2 dark:text-white">@prp_7247</p>
+                        </div>
+                        <div class="flex flex-row items-center gap-2 text-gray"><img
+                                src="[##cms.cms.cdn##]/images/topic.svg" alt="topic">
+                            <p class="t-p2 text-gray group-hover:text-blue transition-all duration-300">@Column1</p>
+                            <span class="w-[1.5px] h-5 bg-gray group-hover:bg-blue transition-all duration-300"></span>
+                            <p class="t-p2 text-gray group-hover:text-blue transition-all duration-300">@prp_7249</p>
+                        </div>
+                    </div>
+                    <p class="t-h2 group-hover:text-blue transition-all duration-300 dark:text-white">@title</p>
+                    <p class="t-p2 group-hover:text-blue transition-all duration-300 dark:text-white">@prp_7244</p>
+                </a></face>
+
+
+            <face filter="link is null"><a href="/news?id=@id" class="group transition-all duration-300 flex flex-col gap-7 "><img
+                        src="[##cms.cms.cdn##]/@00490X00297prp" alt="@title"
+                        class="group-hover:opacity-50 transition-all duration-300 w-full">
+                    <div class="flex flex-row-reverse items-center justify-between">
+                        <div class="flex flex-row-reverse items-center gap-4"><img
+                                src="[##cms.cms.cdn##]/images/arrow.svg" alt="arrow" class="dark:invert">
+                            <p class="t-p2 dark:text-white">@prp_7247 min read</p>
+                        </div>
+                        <div class="flex flex-row items-center gap-2 text-gray"><img
+                                src="[##cms.cms.cdn##]/images/topic.svg" alt="topic">
+                            <p class="t-p2 text-gray group-hover:text-blue transition-all duration-300">@Column1</p>
+                            <span class="w-[1.5px] h-5 bg-gray group-hover:bg-blue transition-all duration-300"></span>
+                            <p class="t-p2 text-gray group-hover:text-blue transition-all duration-300">@prp_7249</p>
+                        </div>
+                    </div>
+                    <p class="t-h2 group-hover:text-blue transition-all duration-300 dark:text-white">@title</p>
+                    <p class="t-p2 group-hover:text-blue transition-all duration-300 dark:text-white">@prp_7244</p>
+                </a></face>
+            <face><a href="/@link" class="group transition-all duration-300 flex flex-col gap-7 "><img
+                        src="[##cms.cms.cdn##]/@00490X00297prp" alt="@title"
+                        class="group-hover:opacity-50 transition-all duration-300 w-full">
+                    <div class="flex flex-row-reverse items-center justify-between">
+                        <div class="flex flex-row-reverse items-center gap-4"><img
+                                src="[##cms.cms.cdn##]/images/arrow.svg" alt="arrow" class="dark:invert">
+                            <p class="t-p2 dark:text-white">@prp_7247 min read</p>
+                        </div>
+                        <div class="flex flex-row items-center gap-2 text-gray"><img
+                                src="[##cms.cms.cdn##]/images/topic.svg" alt="topic">
+                            <p class="t-p2 text-gray group-hover:text-blue transition-all duration-300">@Column1</p>
+                            <span class="w-[1.5px] h-5 bg-gray group-hover:bg-blue transition-all duration-300"></span>
+                            <p class="t-p2 text-gray group-hover:text-blue transition-all duration-300">@prp_7249</p>
+                        </div>
+                    </div>
+                    <p class="t-h2 group-hover:text-blue transition-all duration-300 dark:text-white">@title</p>
+                    <p class="t-p2 group-hover:text-blue transition-all duration-300 dark:text-white">@prp_7244</p>
+                </a></face>
+        </basis>
+    </section>
+    <basis core="call" file="footer.inc" lid="2"></basis>
+    <basis core="call" file="script.inc" lid="2" />
+</body>
+
+</html>

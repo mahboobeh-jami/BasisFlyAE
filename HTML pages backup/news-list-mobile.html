@@ -1,0 +1,193 @@
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2337263">
+    <member name="about" type="view" />
+</basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" catid="205735">
+    <member name="news-list" size="390x240" propertyid="7244,7249,7247" type="list" order="date desc" request="catname" />
+</basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2362592">
+    <member name="last-news" size="1536X694" propertyid="7244,7249,7247" type="list" order="date desc" request="catname" />
+</basis>
+<basis core="dbsource" name="db" source="media" lid="2" sourcemid="1" usedforid="2362592">
+    <member name="productGallery" type="list" format="4" />
+</basis>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[##cms.seo.description##]">
+    <link rel="canonical" href="[##cms.cms.full-url##]" />
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+        <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+        <face filter="key='canonical'">
+            <link rel="canonical" href="@value" />
+        </face>
+        <face>
+            <meta property="@key" content="@value" />
+        </face>
+    </basis>
+    <title>[##cms.seo.title##]</title>
+    <link href="[##cms.cms.cdn##]/css/basisflyae-main-mobile.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body class="dark:bg-dark">
+    <basis core="call" file="header.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
+    <section class="container flex flex-col items-center justify-center text-center gap-4 mt-100 pt-20 dark:text-white px-2.5 py-9">
+        <basis core="print" datamembername="db.about">
+            <face filter="TypeID=128">
+                <h1 class="text-2xl leading-8 font-bold">@Answer</h1>
+            </face>
+        </basis>
+        <basis core="print" datamembername="db.about">
+            <face filter="TypeID=129">
+                <div class="font-medium text-xs leading-3">@largetext</div>
+            </face>
+        </basis>
+        <img class="m-auto mt-5 cursor-pointer" src="[##cms.cms.cdn##]/images/scroll-icon-mobile.png" width="34" height="35" alt="scroll-icon"/>
+    </section>
+    <basis core="print" datamembername="db.last-news">
+        <layout><section class="container flex flex-col items-center justify-center gap-3 dark:text-white mb-4 px-2.5 py-3">@child</section></layout>
+        <face filter="link is null">
+            <article class="w-full mb-5">
+                <a href="/news?id=@id" class="block m-0-auto w-[300px] h-[450px] shadow-lg relative">
+                    <figure class="w-full h-[200px]">
+                        <img class="w-full h-full" src="[##db.productGallery.largeIMG##]" width="390" height="240" alt="@title"/>
+                    </figure>
+                    <header class="pt-3 px-4">
+                        <div class="flex flex-row items-center gap-2 mb-3">
+                            <p class="t-p2">Last news</p>
+                            <p class="t-p2 text-gray">@Column1</p>
+                            <p class="t-p2 text-gray">@prp_7249</p>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <h2 class="text-xl font-bold leading-6 ectText--3">@title</h2>
+                            <p class="t-p1 text-gray group-hover:text-yellow transition-all duration-300">@prp_7247</p>
+                        </div>
+                        <div class="mt-5">
+                            <p class="text-sm leading-5 ectText--3">@prp_7244</p>
+                        </div>
+                    </header>
+                    <footer class="pb-3 px-4 absolute bottom-0 left-0">
+                        <div class="flex flex-row-reverse items-center gap-4">
+                            <p class="text-base text-blue dark:text-white">read more</p>
+                            <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
+                        </div>
+                    </footer>
+                </a>
+            </article>
+        </face>
+        <face>
+            <article class="w-full mb-5">
+                <a href="/@link" class="block m-0-auto w-[300px] h-[450px] shadow-lg relative">
+                    <figure class="w-full h-[200px]">
+                        <img class="w-full h-full" src="[##db.productGallery.largeIMG##]" width="390" height="240" alt="@title"/>
+                    </figure>
+                    <header class="pt-3 px-4">
+                        <div class="flex flex-row items-center gap-2 mb-3">
+                            <p class="t-p2">Last news</p>
+                            <p class="t-p2 text-gray">@Column1</p>
+                            <p class="t-p2 text-gray">@prp_7249</p>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <h2 class="text-xl font-bold leading-6 ectText--3">@title</h2>
+                            <p class="t-p1 text-gray group-hover:text-yellow transition-all duration-300">@prp_7247</p>
+                        </div>
+                        <div class="mt-5">
+                            <p class="text-sm leading-5 ectText--3">@prp_7244</p>
+                        </div>
+                    </header>
+                    <footer class="pb-3 px-4 absolute bottom-0 left-0">
+                        <div class="flex flex-row-reverse items-center gap-4">
+                            <p class="text-base text-blue dark:text-white">read more</p>
+                            <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
+                        </div>
+                    </footer>
+                </a>
+            </article>
+        </face>
+    </basis>
+    <basis core="print" datamembername="db.news-list">
+        <layout>
+            <section class="container flex flex-col items-center justify-center gap-3 dark:text-white mb-4 px-2.5 py-3">@child</section></layout>
+            <face filter="link is null">
+                <article class="col-news w-full mb-5">
+                    <a href="/news?id=@id" class="block m-0-auto w-[300px] h-[420px] relative">
+                        <figure class="w-full h-[200px]">
+                            <img class="w-full h-full" src="[##cms.cms.cdn##]/@00390X00240prp" width="390" height="240" alt="@title"/>
+                        </figure>
+                        <header class="pt-3 px-4">
+                            <div class="flex flex-row-reverse items-center justify-between mb-3">
+                                <div class="flex flex-row-reverse items-center gap-4"><p class="t-p2">@prp_7247</p></div>
+                                <div class="flex flex-row items-center gap-2 text-gray">
+                                    <img src="[##cms.cms.cdn##]/images/topic-mobile.svg" width="11" height="12" alt="topic">
+                                    <p class="t-p2 text-gray">@Column1</p>
+                                    <p class="t-p2 text-gray">@prp_7249</p>
+                                </div>
+                            </div>
+                            <h2 class="text-xl font-bold leading-6 ectText--2">@title</h2>
+                            <div class="mt-5">
+                                <p class="text-sm leading-5 ectText--2">@prp_7244</p>
+                            </div>
+                        </header>
+                        <footer class="pb-3 px-4 absolute bottom-0 left-0">
+                            <div class="flex flex-row-reverse items-center gap-4">
+                                <p class="text-base text-blue dark:text-white">read more</p>
+                                <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
+                            </div>
+                        </footer>
+                    </a>
+                </article>
+            </face>
+            <face>
+                <article class="col-news w-full mb-5">
+                    <a href="/@link" class="block m-0-auto w-[300px] h-[420px] relative">
+                        <figure class="w-full h-[200px]">
+                            <img class="w-full h-full" src="[##cms.cms.cdn##]/@00390X00240prp" width="390" height="240" alt="@title"/>
+                        </figure>
+                        <header class="pt-3 px-4">
+                            <div class="flex flex-row-reverse items-center justify-between mb-3">
+                                <div class="flex flex-row-reverse items-center gap-4"><p class="t-p2">@prp_7247</p></div>
+                                <div class="flex flex-row items-center gap-2 text-gray">
+                                    <img src="[##cms.cms.cdn##]/images/topic-mobile.svg" width="11" height="12" alt="topic">
+                                    <p class="t-p2 text-gray">@Column1</p>
+                                    <p class="t-p2 text-gray">@prp_7249</p>
+                                </div>
+                            </div>
+                            <h2 class="text-xl font-bold leading-6 ectText--2">@title</h2>
+                            <div class="mt-5">
+                                <p class="text-sm leading-5 ectText--2">@prp_7244</p>
+                            </div>
+                        </header>
+                        <footer class="pb-3 px-4 absolute bottom-0 left-0">
+                            <div class="flex flex-row-reverse items-center gap-4">
+                                <p class="text-base text-blue dark:text-white">read more</p>
+                                <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
+                            </div>
+                        </footer>
+                    </a>
+                </article>
+            </face>
+    </basis>
+    <button id="showMoreButton" class="block mb-5 text-base cursor-pointer m-auto" onclick="showMoreNews(this)"><span class="block clear-both text-center font-bold">Show more</span><img class="m-auto" src="[##cms.cms.cdn##]/images/scroll-icon-mobile.png" width="34" height="35" alt="scroll-icon"/></button>
+    <basis core="call" file="footer.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var colNewsCount = document.querySelectorAll('.col-news').length;
+            console.log("count="+colNewsCount)
+            if (colNewsCount > 6) {
+                document.getElementById("showMoreButton").style.display = 'block';
+            }
+        });
+         function showMoreNews(button) {
+            var Articles = document.querySelectorAll(".col-news");
+            Articles.forEach(function(Articles){
+                Articles.classList.add("show-news");
+                })
+                button.style.display = 'none';
+            }
+    </script>
+</body>
+</html>
