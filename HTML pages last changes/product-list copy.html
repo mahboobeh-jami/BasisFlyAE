@@ -1,8 +1,8 @@
 <basis core="dbsource" source="basiscore" name="db" lid="2" mid="20">
-    <member request="cat" type="tree" name="product" parentid="205734" />
+    <member request="cat" type="tree" name="product" parentid="206855" />
 </basis>
-<basis core="dbsource" name="db" source="basiscore" lid="2" mid="20" catid="205734">
-    <member name="productList" type="list" propertyid="8616"
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="20" catid="206855">
+    <member name="productList" type="list" propertyid="8616" size="57x57"
         postsql=" select *, SUBSTR(prp_8616, 1,200-CHARINDEX(' ', REVERSE(SUBSTR(prp_8616, 1, 200)))) || '...' as substr from [db.productList]" />
 </basis>
 <!DOCTYPE html>
@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="[##cms.seo.description##]">
+    <link rel="canonical" href="[##cms.cms.full-url##]" />
     <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
         <member type="list" name="list" request="taglist" preview=""></member>
     </basis>
@@ -31,11 +32,14 @@
     <basis core="call" file="header.inc" lid="2"></basis>
     <basis core="print" datamembername="db.product">
         <layout>
-            <div class="mt-100 flex flex-col items-start justify-center text-white gap-8 relative w-full h-[60vh]">
+            <div class="mt-100 flex flex-col items-start justify-center text-white gap-8 relative w-full h-[60vh]
+            bg-cover bg-no-repeat bg-center bg-banner-products
+            " style="background-image: url([##cms.cms.cdn##]/@image)">
                 @child </div>
         </layout>
-        <face><img src="[##cms.cms.cdn##]/@image" alt="@title"
-                class="absolute left-0 top-0 right-0 bottom-0 w-full h-[60vh]" style="z-index: -1;">
+        <face>
+            <!-- <img src="[##cms.cms.cdn##]/@image" alt="@title"
+                class="absolute left-0 top-0 right-0 bottom-0 w-full h-[60vh]" style="z-index: -1;"> -->
             <div class="container">
                 <h1 class="t-h1 w-[80%]">@title</h1>
             </div>
@@ -46,16 +50,16 @@
     </basis>
     <section class="container py-20 flex flex-col items-center justify-center gap-4 dark:text-white"><img
             src="[##cms.cms.cdn##]/images/topic.svg" alt="topic">
-        <p class="t-p2">SOLUTION</p>
-        <div class="text-center"><span class="t-h4">Basisfly </span><span class="t-h2">Solutions</span>
+        <p class="t-p2">PRODUCT</p>
+        <div class="text-center"><span class="t-h4">Basisfly </span><span class="t-h2">Products</span>
             <p class="t-h4">for the travel market</p>
         </div>
         <div class="text-center">
-            <p class="t-p1">The most complete, customisable, and robust booking engine for</p>
+            <p class="t-p1">The most complete, customisable, robust and configurable booking engine for</p>
                 
-            <p class="t-p4">Incoming Agencies (DMC), Travel Agencies (OTA), Bed Banks, Airlines GSA, White Label, and Tour Operators</p>
+            <p class="t-p4">Flight, Hotel, Tour, Flight+Hotel, Train, Insurance</p>
         </div>
-        <p class="t-p4">Basisfly offers technology solution for:</p>
+        <p class="t-p4">Basisfly offers technology product for:</p>
     </section>
     <section class="container grid lg:grid-cols-2 xl:grid-cols-3 pt-10 gap-12">
         <basis core="print" datamembername="db.productList">
@@ -68,10 +72,10 @@
                     <section class="dark:bg-dark2-imp h-full">
                         <div
                             class="product-box-s flex flex-col gap-7 p-16 dark:text-white dark:bg-product-list justify-between h-full">
-                            <img src="[##cms.cms.cdn##]/@image" alt="@title"
+                            <img src="[##cms.cms.cdn##]/@00057X00057prp" alt="@title"
                                 class="transition-all duration-300 dark:invert"
-                                style="width:81.98px; height:68.42px;" />
-                            <h2 class="t-h2 transition-all duration-300">@title</h2>
+                                />
+                            <h1 class="t-h2 transition-all duration-300">@title</h1>
                             <p class="t-p2 transition-all duration-300 ectText--3">@substr</p>
                             <div class="button-wrap-p mt-5"><button>Products</button></div>
                         </div>
@@ -83,10 +87,10 @@
                     <section class="dark:bg-dark2-imp h-full">
                         <div
                             class="product-box-s flex flex-col gap-7 p-16 dark:text-white dark:bg-product-list justify-between h-full">
-                            <img src="[##cms.cms.cdn##]/@image" alt="@title"
+                            <img src="[##cms.cms.cdn##]/@00057X00057prp" alt="@title"
                                 class="transition-all duration-300 dark:invert"
-                                style="width:81.98px; height:68.42px;" />
-                            <h2 class="t-h2 transition-all duration-300">@title</h2>
+                                />
+                            <h1 class="t-h2 transition-all duration-300">@title</h1>
                             <p class="t-p2 transition-all duration-300 ectText--3">@substr</p>
                             <div class="button-wrap-p mt-5"><button>Products</button></div>
                         </div>

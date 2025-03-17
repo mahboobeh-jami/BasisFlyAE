@@ -1,28 +1,16 @@
-<basis core="dbsource" source="basiscore" name="db" lid="2" mid="20">
-    <member request="cat" type="tree" name="product" parentid="206855" />
-</basis>
-<basis core="dbsource" name="db" source="basiscore" lid="2" mid="20" catid="206855">
-    <member name="productList" type="list" propertyid="8616" size="57x57"
-        postsql=" select *, SUBSTR(prp_8616, 1,200-CHARINDEX(' ', REVERSE(SUBSTR(prp_8616, 1, 200)))) || '...' as substr from [db.productList]" />
-</basis>
+<basis core="dbsource" source="basiscore" name="db" lid="2" mid="20"><member request="cat" type="tree" name="product" parentid="206855" /></basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="20" catid="206855"><member name="productList" type="list" propertyid="8616" size="57x57" postsql=" select *, SUBSTR(prp_8616, 1,200-CHARINDEX(' ', REVERSE(SUBSTR(prp_8616, 1, 200)))) || '...' as substr from [db.productList]" /></basis>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="[##cms.seo.description##]">
-    <link rel="canonical" href="[##cms.cms.full-url##]" />
     <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
         <member type="list" name="list" request="taglist" preview=""></member>
     </basis>
     <basis core="print" datamembername="tag.list">
-        <face filter="key='canonical'">
-            <link rel="canonical" href="@value" />
-        </face>
-        <face>
-            <meta property="@key" content="@value" />
-        </face>
+        <face filter="key='canonical'"><link rel="canonical" href="@value" /></face><face><meta property="@key" content="@value" /></face>
     </basis>
     <basis core="call" file="style.inc" lid="2" />
     <title>[##cms.seo.title##]</title>
@@ -30,74 +18,11 @@
 
 <body class="dark:bg-dark">
     <basis core="call" file="header.inc" lid="2"></basis>
-    <basis core="print" datamembername="db.product">
-        <layout>
-            <div class="mt-100 flex flex-col items-start justify-center text-white gap-8 relative w-full h-[60vh]">
-                @child </div>
-        </layout>
-        <face><img src="[##cms.cms.cdn##]/@image" alt="@title"
-                class="absolute left-0 top-0 right-0 bottom-0 w-full h-[60vh]" style="z-index: -1;">
-            <div class="container">
-                <h1 class="t-h1 w-[80%]">@title</h1>
-            </div>
-            <div class="container">
-                <div class="t-p1 w-[60%]">@urldescription</div>
-            </div>
-        </face>
-    </basis>
-    <section class="container py-20 flex flex-col items-center justify-center gap-4 dark:text-white"><img
-            src="[##cms.cms.cdn##]/images/topic.svg" alt="topic">
-        <p class="t-p2">PRODUCT</p>
-        <div class="text-center"><span class="t-h4">Basisfly </span><span class="t-h2">Products</span>
-            <p class="t-h4">for the travel market</p>
-        </div>
-        <div class="text-center">
-            <p class="t-p1">The most complete, customisable, robust and configurable booking engine for</p>
-                
-            <p class="t-p4">Flight, Hotel, Tour, Flight+Hotel, Train, Insurance</p>
-        </div>
-        <p class="t-p4">Basisfly offers technology product for:</p>
-    </section>
-    <section class="container grid lg:grid-cols-2 xl:grid-cols-3 pt-10 gap-12">
-        <basis core="print" datamembername="db.productList">
-            <layout>
-                @child
-            </layout>
-            
-            <face filter="link is null">
-                <a href="/product?id=@id" class="product-s">
-                    <section class="dark:bg-dark2-imp h-full">
-                        <div
-                            class="product-box-s flex flex-col gap-7 p-16 dark:text-white dark:bg-product-list justify-between h-full">
-                            <img src="[##cms.cms.cdn##]/@00057X00057prp" alt="@title"
-                                class="transition-all duration-300 dark:invert"
-                                />
-                            <h1 class="t-h2 transition-all duration-300">@title</h1>
-                            <p class="t-p2 transition-all duration-300 ectText--3">@substr</p>
-                            <div class="button-wrap-p mt-5"><button>Products</button></div>
-                        </div>
-                    </section>
-                </a>
-            </face>
-            <face>
-                <a href="@link" class="product-s">
-                    <section class="dark:bg-dark2-imp h-full">
-                        <div
-                            class="product-box-s flex flex-col gap-7 p-16 dark:text-white dark:bg-product-list justify-between h-full">
-                            <img src="[##cms.cms.cdn##]/@00057X00057prp" alt="@title"
-                                class="transition-all duration-300 dark:invert"
-                                />
-                            <h1 class="t-h2 transition-all duration-300">@title</h1>
-                            <p class="t-p2 transition-all duration-300 ectText--3">@substr</p>
-                            <div class="button-wrap-p mt-5"><button>Products</button></div>
-                        </div>
-                    </section>
-                </a>
-            </face>
-        </basis>
-    </section>
+ <basis core="print" datamembername="db.product"><layout><div class="mt-100 bg-black w-full h-[60vh] flex flex-col items-start justify-center text-white gap-8 relative bg-cover bg-no-repeat bg-center bg-banner-products">@child </div></layout><face><div class="container"><h1 class="t-h1 w-[80%]">@title</h1></div><div class="container"><h2 class="t-p1 w-[60%]">@urldescription</h2></div></face></basis>
+ <section class="container py-20 flex flex-col items-center justify-center gap-4 dark:text-white"><img src="[##cms.cms.cdn##]/images/topic.svg" alt="topic"><p class="t-p2">PRODUCT</p><div class="text-center"><span class="t-h4">Basisfly </span><span class="t-h2">Products</span><p class="t-h4">for the travel market</p></div><div class="text-center"><p class="t-p1">The most complete, customisable, robust and configurable booking engine for</p><h2 class="t-p4">Flight, Hotel, Tour, Flight+Hotel, Train, Insurance</h2></div><p class="t-p4">Basisfly offers technology product for:</p></section>
+ <section class="container grid lg:grid-cols-2 xl:grid-cols-3 pt-10 gap-12"><basis core="print" datamembername="db.productList"><layout>@child </layout><face filter="link is null"><a href="/product?id=@id" class="product-s"><section class="dark:bg-dark2-imp h-full"><div class="product-box-s flex flex-col gap-7 p-16 dark:text-white dark:bg-product-list justify-between h-full"><img src="[##cms.cms.cdn##]/@00057X00057prp" alt="@title" class="transition-all duration-300 dark:invert" /><h2 class="t-h2 transition-all duration-300">@title</h2><h3 class="t-p2 transition-all duration-300 ectText--3">@substr</h3><div class="button-wrap-p mt-5"><button>Products</button></div></div></section></a></face><face><a href="@link" class="product-s"><section class="dark:bg-dark2-imp h-full"><div class="product-box-s flex flex-col gap-7 p-16 dark:text-white dark:bg-product-list justify-between h-full"><img src="[##cms.cms.cdn##]/@00057X00057prp" alt="@title" class="transition-all duration-300 dark:invert" /><h2 class="t-h2 transition-all duration-300">@title</h2><h3 class="t-p2 transition-all duration-300 ectText--3">@substr</h3><div class="button-wrap-p mt-5"><button>Products</button></div></div></section></a></face></basis></section>
     <basis core="call" file="footer.inc" lid="2"></basis>
-    <basis core="call" file="script.inc" lid="2" />
+    <basis core="call" file="script.inc" lid="2" ></basis>
 </body>
 
 </html>
