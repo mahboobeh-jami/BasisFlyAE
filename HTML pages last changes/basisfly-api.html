@@ -1,0 +1,46 @@
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="[##cms.query.id##]"
+><member name="news-pre" type="view"/>
+</basis>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[##cms.seo.description##]">
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+        <member type="list" name="list" request="taglist" preview=""></member>
+    </basis>
+    <basis core="print" datamembername="tag.list">
+        <face filter="key='canonical'">
+            <link rel="canonical" href="@value" />
+        </face>
+        <face>
+            <meta property="@key" content="@value" />
+        </face>
+    </basis>
+    <basis core="call" file="style.inc" lid="2" />
+    <title>[##cms.seo.title##]</title>
+</head>
+
+<body class="dark:bg-dark">
+    <basis core="call" file="header.inc" lid="2"></basis>
+    
+    <div
+        class="mt-100 bg-black w-full h-[60vh] flex flex-col items-start justify-center text-white gap-8 relative bg-cover bg-no-repeat bg-center"
+        
+        >
+        <img src="" class="w-full h-full object-cover" alt="">
+    </div>
+
+
+
+
+
+    <basis core="call" file="footer.inc" lid="2"></basis>
+    <basis core="call" file="script.inc" lid="2"></basis>
+</body>
+
+</html>

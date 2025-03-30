@@ -22,6 +22,12 @@
     <member name="image-We-care" type="list" format="4" />
 </basis>
 
+<basis core="call" file="submit-email.bc" method="post" triggers="cms.email" run="atclient"
+    if="{##cms.email.run|(false)##}" name="{##cms.email.name##}" email="{##cms.email.email##}"
+    phone="{##cms.email.phone##}" company="{##cms.email.company##}" business="{##cms.email.business##}"
+    website="{##cms.email.website##}" comments="{##cms.email.comments##}" country="{##cms.email.country##}">
+</basis>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -351,6 +357,7 @@
             const captcha = document.querySelector("#captchaContainer input[name='captcha']").value;
             const captchaid = document.querySelector("#captchaContainer input[name='captchaid']").value;
             const stringJson = JSON.stringify(args.source?.rows[0]);
+            console.log(stringJson)
             $bc.setSource('edit.object', {
                 value: stringJson,
                 captcha: captcha,
@@ -359,8 +366,9 @@
         }
         let quss = [];
         async function getSchemaAsync(context, schemaUrl) {
-            const r = await fetch(`https://basispanel.ir/schema/domainform/72B84A8B-80E2-4636-977F-243E512CCD75/EC643A48-94B2-45E1-865E-332020821744/en/Request-A-Demo`);
+            const r = await fetch(`https://basispanel.ir/schema/domainform/72B84A8B-80E2-4636-977F-243E512CCD75/EC643A48-94B2-45E1-865E-332020821744/en/Request-a-Demo`);
             const json = await r.json();
+            console.log("schema load from callback ", json.sources[0].data[0].questions);
             quss = json.sources[0].data[0].questions;
             return json.sources[0].data[0];
         }
@@ -384,7 +392,19 @@
                     document.querySelector(".alertBtnS").style.display = "none";
                     alert.style.display = "block";
                     alert.innerHTML = "Your request has been registered";
+
                 }, 2000);
+                $bc.setSource(`cms.email`, [{
+                    "name": document.querySelectorAll(".qusContent")[0].querySelector("input").value,
+                    "email": document.querySelectorAll(".qusContent")[1].querySelector("input").value,
+                    "phone": document.querySelectorAll(".qusContent")[2].querySelector("input").value,
+                    "company": document.querySelectorAll(".qusContent")[3].querySelector("input").value,
+                    "business": document.querySelectorAll(".qusContent")[4].querySelector("input").value,
+                    "website": document.querySelectorAll(".qusContent")[5].querySelector("input").value,
+                    "comments": document.querySelectorAll(".qusContent")[6].querySelector("input").value,
+                    "country": document.querySelectorAll(".qusContent")[7].querySelector("input").value,
+                    "run": true
+                }]);
             } else {
                 document.querySelector(".alertOverlay").style.display = "flex";
                 document.querySelector(".alertBtnF").style.display = "flex";
@@ -415,11 +435,13 @@
         function captchaRendered() {
             document.querySelector(".contactUsInput").placeholder = "Enter Captcha";
         }
+
         function capitalizeEachWord(str) {
             return str.replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
         }
+
         function formRendered() {
             document.querySelectorAll("[data-bc-question-title]").forEach(el => {
                 let textEl = el.textContent.trim();
@@ -427,6 +449,7 @@
             })
 
             quss.forEach(q => {
+                document.querySelector(`[data-bc-schema-info-word='${q.wordId}']`).parentElement.classList.add("qusContent");
                 if (q.parts[0].validations?.required == true) {
                     document.querySelector(`[data-bc-schema-info-word='${q.wordId}']`).parentElement.classList.add("qusReq");
                 }
@@ -440,7 +463,7 @@
             document.querySelector("[data-bc-schema-info-word='596'] input[type='text']").placeholder = "Company Name";
             document.querySelector("[data-bc-schema-info-word='838'] input[type='text']").placeholder = "Business type";
             document.querySelector("[data-bc-schema-info-word='619'] input[type='text']").placeholder = "Website";
-            document.querySelector("[data-bc-schema-info-word='844'] ____textarea").placeholder = "Description";
+            document.querySelector("[data-bc-schema-info-word='844'] _textarea").placeholder = "Description";
 
             document.querySelectorAll("[type='radio']").forEach(element => {
                 let value_target = element.value;
