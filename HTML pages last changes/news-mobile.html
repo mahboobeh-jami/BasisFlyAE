@@ -64,10 +64,20 @@
             </basis>
             <basis core="print" datamembername="db.news-show">
                 <layout><div class="flex flex-col text-black gap-10 dark:text-white">@child</div></layout>
-                <face filter="typeid not in(159,150,160,161,162) and prpid not in (7249,7248,7247)">
+                <face filter="typeid not in(159,150,160,161,162,200) and prpid not in (7249,7248,7247)">
                     <span class="bg-orange w-[55px] h-[8px] mt-5"></span>
                     <div class="text-sm font-bold leading-6">@text</div>
                     <div class="text-sm font-normal leading-6 mb-3">@largetext</div>
+                </face>
+                <face filter="typeid in(200) and prpid in(3087649)">
+
+                    <div class="mx-auto my-2">
+
+                        <iframe  width="320" height="250" src="@text" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                    </div>
+
+                      
                 </face>
             </basis>
             <div>

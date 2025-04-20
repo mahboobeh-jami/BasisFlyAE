@@ -1,242 +1,172 @@
-<basis
-  core="dbsource"
-  name="db"
-  source="basiscore"
-  lid="2"
-  mid="20"
-  catid="212816"
->
-  <member
-    size="141x47"
-    propertyid="8605,8606,8607,8608,3087445"
-    name="customers"
-    type="list"
-    order="ord"
-  />
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="20" catid="212816">
+  <member size="141x47" propertyid="8605,8606,8607,8608,3087445" name="customers" type="list" order="ord" />
 </basis>
 
 <basis core="dbsource" source="basiscore" name="db" lid="2" mid="20">
   <member request="cat" type="tree" name="product" parentid="212816" />
 </basis>
 
-<basis
-  core="dbsource"
-  name="db"
-  source="basiscore"
-  lid="2"
-  mid="1"
-  usedforid="2337259"
->
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2337259">
   <member name="blog-customres" type="view" />
 </basis>
 
-<basis
-  core="dbsource"
-  name="db"
-  source="basiscore"
-  lid="2"
-  mid="1"
-  usedforid="2372164"
->
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2372164">
   <member name="second-blog" type="view" />
 </basis>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="[##cms.seo.description##]" />
-    <link rel="canonical" href="[##cms.cms.full-url##]" />
-    <basis
-      core="dbsource"
-      source="hosting"
-      name="tag"
-      urlid="[##cms.seo.urlid##]"
-    >
-      <member type="list" name="list" request="taglist" preview=""></member>
-    </basis>
-    <basis core="print" datamembername="tag.list">
-      <face filter="key='canonical'">
-        <link rel="canonical" href="@value" />
-      </face>
-      <face>
-        <meta property="@key" content="@value" />
-      </face>
-    </basis>
-    <basis core="call" file="style.inc" lid="2" />
-    <title>[##cms.seo.title##]</title>
-  </head>
-  <body class="dark:bg-dark">
-    <basis core="call" file="header.inc" lid="2"></basis>
 
-    <main class="mt-100 flex flex-col gap-8">
-      <section
-        class="relative w-full h-fit flex flex-col justify-center items-center"
-      >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="[##cms.seo.description##]" />
+  <link rel="canonical" href="[##cms.cms.full-url##]" />
+  <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+    <member type="list" name="list" request="taglist" preview=""></member>
+  </basis>
+  <basis core="print" datamembername="tag.list">
+    <face filter="key='canonical'">
+      <link rel="canonical" href="@value" />
+    </face>
+    <face>
+      <meta property="@key" content="@value" />
+    </face>
+  </basis>
+  <basis core="call" file="style.inc" lid="2" />
+  <title>[##cms.seo.title##]</title>
+</head>
+
+<body class="dark:bg-dark">
+  <basis core="call" file="header.inc" lid="2"></basis>
+
+  <main class="mt-100 flex flex-col gap-8">
+    <section class="relative w-full h-fit flex flex-col justify-center items-center">
+      <basis core="print" datamembername="db.product">
+        <face filter="ord=100"><img src="[##cms.cms.cdn##]/@image" alt="@title" class="object-cover w-full" /></face>
+      </basis>
+      <div class="w-full h-full flex flex-col justify-center items-center gap-2 absolute top-0 left-0">
         <basis core="print" datamembername="db.product">
-          <face filter="ord=100"
-            ><img
-              src="[##cms.cms.cdn##]/@image"
-              alt="@title"
-              class="object-cover w-full"
-          /></face>
+          <face filter="ord=100">
+            <h1 class="text-white font-bold text-[58px] leading-[73.08px]">
+              @title
+            </h1>
+          </face>
         </basis>
-        <div
-          class="w-full h-full flex flex-col justify-center items-center gap-2 absolute top-0 left-0"
-        >
-          <basis core="print" datamembername="db.product">
-            <face filter="ord=100"
-              ><h1 class="text-white font-bold text-[58px] leading-[73.08px]">
-                @title
-              </h1></face
-            >
-          </basis>
 
-          <basis core="print" datamembername="db.product">
-            <face filter="ord=100">
-              <p
-                class="text-xl text-white font-normal w-[60%] xl:w-[45%] text-center"
-              >
-                @urldescription
-              </p>
-            </face>
-          </basis>
-        </div>
-        <div
-          class="absolute first-octagon gap-8 flex justify-between items-center -bottom-[5rem] py-10 px-16 w-[30%] xl:w-[45%] lg:w-[60%] !rounded-[-20px] dark:bg-dark2 bg-black text-white"
-        >
-          <basis core="print" datamembername="db.blog-customres">
-            <face filter="RowNumber=3">
-              <div class="flex justify-center items-center flex-col">
-                <p class="text-[54px] leading-[68.03px]">@text</p>
-                <div class="text-[13px] leading-[16.38px]">@largetext</div>
-              </div>
-            </face>
-          </basis>
+        <basis core="print" datamembername="db.product">
+          <face filter="ord=100">
+            <p class="text-xl text-white font-normal w-[60%] xl:w-[45%] text-center">
+              @urldescription
+            </p>
+          </face>
+        </basis>
+      </div>
+      <div
+        class="absolute first-octagon gap-8 flex justify-between items-center -bottom-[5rem] py-10 px-16 w-[30%] xl:w-[45%] lg:w-[60%] !rounded-[-20px] dark:bg-dark2 bg-black text-white">
+        <basis core="print" datamembername="db.blog-customres">
+          <face filter="RowNumber=3">
+            <div class="flex justify-center items-center flex-col">
+              <p class="text-[54px] leading-[68.03px]">@text</p>
+              <div class="text-[13px] leading-[16.38px]">@largetext</div>
+            </div>
+          </face>
+        </basis>
 
-          <basis core="print" datamembername="db.blog-customres">
-            <face filter="RowNumber=4">
-              <div class="flex justify-center items-center flex-col">
-                <p class="text-[54px] leading-[68.03px]">@text</p>
-                <div class="text-[13px] leading-[16.38px]">@largetext</div>
-              </div>
-            </face>
-          </basis>
+        <basis core="print" datamembername="db.blog-customres">
+          <face filter="RowNumber=4">
+            <div class="flex justify-center items-center flex-col">
+              <p class="text-[54px] leading-[68.03px]">@text</p>
+              <div class="text-[13px] leading-[16.38px]">@largetext</div>
+            </div>
+          </face>
+        </basis>
 
-          <basis core="print" datamembername="db.blog-customres">
-            <face filter="RowNumber=5">
-              <div class="flex justify-center items-center flex-col">
-                <p class="text-[54px] leading-[68.03px]">@text</p>
-                <div class="text-[13px] leading-[16.38px]">@largetext</div>
-              </div>
-            </face>
-          </basis>
-        </div>
-      </section>
-      <section class="mt-28 flex flex-col items-center gap-8">
-        <div class="flex flex-col gap-3 items-center">
-          <span>
-            <svg
-              width="28"
-              height="24"
-              viewBox="0 0 28 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_31_1171)">
-                <path
-                  d="M10.0894 5.55177L6.27423 12.0146L10.0894 18.4775H17.8637L21.6789 12.0146L17.8637 5.55177H10.0894ZM7.22656 0.580322H20.7266L27.4766 12.0146L20.7266 23.449H7.22656L0.476562 12.0146L7.22656 0.580322Z"
-                  fill="#FFA515"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_31_1171">
-                  <rect width="28" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </span>
-          <p
-            class="text-black dark:text-white text-[15px] leading-[18.9px] font-normal"
-          >
-            ABOUT US
-          </p>
-        </div>
-        <div class="flex dark:text-white flex-col gap-3 items-center">
-          <basis core="print" datamembername="db.second-blog">
-            <face filter="RowNumber=1">
-              <h2 class="text-[35px] leading-[44.1px] font-bold">@Answer</h2>
-            </face>
-          </basis>
+        <basis core="print" datamembername="db.blog-customres">
+          <face filter="RowNumber=5">
+            <div class="flex justify-center items-center flex-col">
+              <p class="text-[54px] leading-[68.03px]">@text</p>
+              <div class="text-[13px] leading-[16.38px]">@largetext</div>
+            </div>
+          </face>
+        </basis>
+      </div>
+    </section>
+    <section class="mt-28 flex flex-col items-center gap-8">
+      <div class="flex flex-col gap-3 items-center">
+        <span>
+          <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_31_1171)">
+              <path
+                d="M10.0894 5.55177L6.27423 12.0146L10.0894 18.4775H17.8637L21.6789 12.0146L17.8637 5.55177H10.0894ZM7.22656 0.580322H20.7266L27.4766 12.0146L20.7266 23.449H7.22656L0.476562 12.0146L7.22656 0.580322Z"
+                fill="#FFA515" />
+            </g>
+            <defs>
+              <clipPath id="clip0_31_1171">
+                <rect width="28" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </span>
+        <p class="text-black dark:text-white text-[15px] leading-[18.9px] font-normal">
+          ABOUT US
+        </p>
+      </div>
+      <div class="flex dark:text-white flex-col gap-3 items-center">
+        <basis core="print" datamembername="db.second-blog">
+          <face filter="RowNumber=1">
+            <h2 class="text-[35px] leading-[44.1px] font-bold">@Answer</h2>
+          </face>
+        </basis>
 
-          <basis core="print" datamembername="db.second-blog">
-            <face filter="RowNumber=2">
-              <div class="text-xl font-normal text-center w-[75%] xl:w-[60%]">
-                @Answer
-              </div>
-            </face>
-          </basis>
-        </div>
-        <div class="flex flex-col gap-3 items-center w-[75%] xl:w-[60%]">
-          <!-- <h3
+        <basis core="print" datamembername="db.second-blog">
+          <face filter="RowNumber=2">
+            <div class="text-xl font-normal text-center w-[75%] xl:w-[60%]">
+              @Answer
+            </div>
+          </face>
+        </basis>
+      </div>
+      <div class="flex flex-col gap-3 items-center w-[75%] xl:w-[60%]">
+        <!-- <h3
             class="text-[40px] dark:text-white text-center leading-[44.1px] font-bold"
           >
             customers
           </h3> -->
-          <basis core="list" datamembername="db.customers">
-            <layout>
-              <div class="grid grid-cols-3 xl:grid-cols-4 gap-6 w-full my-8">
-                @child
-              </div>
-            </layout>
-            <face>
-              <div class="w-full customer-card-wrapper dark:shadow-cust">
-                <div class="w-full customer-card">
-                  <span
-                    class="flex w-full flex-col items-center px-3 py-8 bg-white dark:text-white dark:bg-dark2-imp"
-                  >
-                    <img
-                      class="mb-6"
-                      src="@00141X00047prp"
-                      width="141"
-                      height="47"
-                      alt="@prp_8605"
-                    />
-                    <div class="flex flex-col gap-3 dark:text-white">
-                      <p
-                        class="text-base text-center mb-2 text-zinc-900 font-medium"
-                      >
-                        @prp_8605
-                      </p>
-                      <div class="flex gap-1 mb-2 items-center justify-center">
-                        <img
-                          class="!w-[33px]"
-                          src="@prp_8607"
-                          alt="@prp_8608"
-                          width="33"
-                          height="19"
-                        />
-                        <p class="text-zinc-800 dark:text-white text-sm">@prp_8608</p>
-                      </div>
+        <basis core="list" datamembername="db.customers">
+          <layout>
+            <div class="grid grid-cols-3 xl:grid-cols-4 gap-6 w-full my-8">
+              @child
+            </div>
+          </layout>
+          <face>
+            <div class="w-full customer-card-wrapper dark:shadow-cust">
+              <div class="w-full customer-card">
+                <span class="flex w-full flex-col items-center px-3 py-8 bg-white  dark:bg-white">
+                  <img class="mb-6" src="@00141X00047prp" width="141" height="47" alt="@prp_8605" />
+                  <div class="flex flex-col gap-3 ">
+                    <p class="text-base text-center mb-2 text-zinc-900 font-medium">
+                      @prp_8605
+                    </p>
+                    <div class="flex gap-1 mb-2 items-center justify-center">
+                      <img class="!w-[33px]" src="@prp_8607" alt="@prp_8608" width="33" height="19" />
+                      <p class="text-zinc-800  text-sm">@prp_8608</p>
                     </div>
-                    <a
-                      rel="nofollow"
-                      target="_blank"
-                      href="@prp_3087445"
-                      class="text-[#3B82F6] font-medium w-full text-center !text-sm pt-3 border-t border-zinc-100"
-                    >
-                      @prp_8606
-                    </a>
-                  </span>
-                </div>
+                  </div>
+                  <a rel="nofollow" target="_blank" href="@prp_3087445"
+                    class="text-[#3B82F6] font-medium w-full text-center !text-sm pt-3 border-t border-zinc-100">
+                    @prp_8606
+                  </a>
+                </span>
               </div>
-            </face>
-          </basis>
-        </div>
-      </section>
-    </main>
-    <basis core="call" file="footer.inc" lid="2"></basis>
-    <basis core="call" file="script.inc" lid="2" />
-  </body>
+            </div>
+          </face>
+        </basis>
+      </div>
+    </section>
+  </main>
+  <basis core="call" file="footer.inc" lid="2"></basis>
+  <basis core="call" file="script.inc" lid="2" />
+</body>
+
 </html>

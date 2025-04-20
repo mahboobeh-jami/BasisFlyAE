@@ -1,165 +1,26 @@
-<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2337260">
-    <member name="reuquest" type="view" />
-</basis>
-
-<basis core="dbsource" name="db" source="media" lid="2" sourcemid="1" usedforid="2337260">
-    <member name="reuquestGallery" type="list" format="4" />
-</basis>
-<basis core="call" file="submit-email.bc" method="post" triggers="cms.email" run="atclient"
-    if="{##cms.email.run|(false)##}" name="{##cms.email.name##}" email="{##cms.email.email##}"
-    phone="{##cms.email.phone##}" company="{##cms.email.company##}" business="{##cms.email.business##}"
-    website="{##cms.email.website##}" comments="{##cms.email.comments##}" country="{##cms.email.country##}">
-</basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2337260"><member name="reuquest" type="view" /></basis>
+<basis core="dbsource" name="db" source="media" lid="2" sourcemid="1" usedforid="2337260"><member name="reuquestGallery" type="list" format="4" /></basis>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="[##cms.seo.description##]">
-    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
-        <member type="list" name="list" request="taglist" preview=""></member>
-    </basis>
-    <basis core="print" datamembername="tag.list">
-        <face filter="key = 'canonical'">
-            <link rel="canonical" href="@value" />
-        </face>
-        <face>
-            <meta property="@key" content="@value" />
-        </face>
-    </basis>
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]"><member type="list" name="list" request="taglist" preview=""></member></basis>
+    <basis core="print" datamembername="tag.list"><face filter="key='canonical'"><link rel="canonical" href="@value" /></face><face><meta property="@key" content="@value" /></face></basis>
     <title>[##cms.seo.title##]</title>
     <link href="[##cms.cms.cdn##]/css/basisflyae-main-mobile.css" type="text/css" rel="stylesheet" />
 </head>
-
 <body class="bg-[#FAFAFA] dark:bg-dark">
-
     <basis core="call" file="header.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
-    <section class="container flex flex-col items-center justify-center text-center gap-4 mt-100 pt-20 dark:text-white px-2.5 py-9 m-auto">
-        <basis core="print" datamembername="db.reuquest">
-            <face filter="TypeID = 129"><h1 class="text-2xl leading-8 font-bold">@Answer</h1></face>
-        </basis>
-        <basis core="print" datamembername="db.reuquest">
-            <face filter="TypeID = 128">
-                <div class="font-medium text-xs leading-3">@Answer</div>
-            </face>
-        </basis>
-    </section>
-
-    <section class="container flex flex-col items-center justify-center text-center gap-4 mt-100 pt-20 dark:text-white px-2.5 py-9">
-        <div class="box-Form-Req px-20 py-32 bottom-0 w-full text-left">
-            <!-- domain form & captcha -->
-            <basis core="schema" run="atclient" schemaUrl="https://basispanel.ir/schema/domainform"
-                schemaUrl="/72B84A8B-80E2-4636-977F-243E512CCD75/EC643A48-94B2-45E1-865E-332020821744/en/Request-a-Demo"
-                displayMode="new" button="[data-btn-add]" schemaCallback="getSchemaAsync"
-                resultSourceId="form.submit" OnRendered="formRendered">
-            </basis>
-            <basis core="callback" run="AtClient" triggers="form.submit" method="onSource"></basis>
-            <Basis core="api"
-                url="https://basispanel.ir/schema/domainform/72B84A8B-80E2-4636-977F-243E512CCD75/fa/editobject"
-                method="post" run="atclient"
-                body="object_edit={##edit.object.value##}&captcha={##edit.object.captcha##}&captchaid={##edit.object.captchaid##}"
-                content-type="application/x-www-form-urlencoded" triggers="edit.object"
-                if="{##edit.object|(false)##}" OnProcessed="OnProcessedEditObject">
-            </Basis>
-            <div id="captchaContainer" class="captchaContainerclass captcha-sefaresh" data-bc-answer-container=""
-                data-bc-schema-info-multi="0" data-bc-schema-info-word="58" data-bc-schema-info-part="1"
-                data-bc-schema-info-part-0-type="text">
-                <basis core="dbsource" source="trust_login" name="captcha" run="atclient"
-                    triggers="captcha.refresh">
-                    <member name="code1" type="scalar" request="captcha"></member>
-                </basis>
-                <div data-bc-title-container=""><span data-bc-question-title="" data-bc-schema-info-prpid="2228"
-                        data-sys-text="">Captcha</span></div>
-                <basis datamembername="captcha.code1" core="print" run="atclient" OnRendered="captchaRendered">
-                    <face>
-                        <script type="text/template">
-                            <img src="https://www.basispanel.ir/@captcha@" width="88" height="49" style="height:49px;" />
-                            <div class="flex flex-row items-center relative">
-                                <input type="text" class="contactUsInput codeinputm" name="captcha" maxlength="4" />
-                                <input type="hidden" name="captchaid" value="@captcha@" />
-                                <div class="absolute absolute right-[1px] top-[1px] flex flex-row-reverse items-center gap-2">
-                                    <svg class="cursor-pointer" width="35" height="25" onclick="refreshCaptcha()" viewBox="0 0 16 17" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.6498 3.34999C12.0198 1.71999 9.70978 0.779992 7.16978 1.03999C3.49978 1.40999 0.479777 4.38999 0.0697772 8.05999C-0.480223 12.91 3.26978 17 7.99978 17C11.1898 17 13.9298 15.13 15.2098 12.44C15.5298 11.77 15.0498 11 14.3098 11C13.9398 11 13.5898 11.2 13.4298 11.53C12.2998 13.96 9.58978 15.5 6.62978 14.84C4.40978 14.35 2.61978 12.54 2.14978 10.32C1.30978 6.43999 4.25978 2.99999 7.99978 2.99999C9.65978 2.99999 11.1398 3.68999 12.2198 4.77999L10.7098 6.28999C10.0798 6.91999 10.5198 7.99999 11.4098 7.99999H14.9998C15.5498 7.99999 15.9998 7.54999 15.9998 6.99999V3.40999C15.9998 2.51999 14.9198 2.06999 14.2898 2.69999L13.6498 3.34999Z"
-                                            fill="#000000" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </script>
-                    </face>
-                </basis>
-            </div>
-
-            <div class="flex flex-row items-center gap-3 mt-8 2xl:flex-nowrap lg:flex-wrap">
-                <div onclick="formClickHandler()" data-btn-add class="button-wrap-p w-fit relative">
-                    <button>Send Form</button>
-                </div>
-                <p class="alert hidden font-[500] text-[20px] leading-[25.2px] text-yellow">test</p>
-            </div>
-        </div>
-        <div class="flex flex-col flex-wrap items-start gap-10 w-full dark:text-white mt-20">
-            <p class="t-h2 w-full border-solid border-b border-slate-600 text-left pb-2">Useful Links</p>
-
-            <p class="text-xl font-semibold leading-6">Contact</p>
-                        <p class="text-base leading-6">info@basisfly.ae</p>
-                      <p class="text-base leading-6">+971 544 95 95 91 </p>
-                      <p class="text-base leading-6">+971 504 95 95 91  </p>
-            <basis core="print" datamembername="db.reuquest">
-                <face filter="valueID=3938199">
-                    <div class="flex flex-col flex-wrap items-start gap-4 mt-8">
-                        <p class="text-xl font-semibold leading-6">@text</p>
-                        <div class="text-base leading-6 text-justify">@largetext</div>
-                        <a href="/products" class="tag m-initial dark:text-white">Click here</a>
-                    </div>
-                </face>
-                <face filter="valueID=3938200">
-                    <div class="flex flex-col flex-wrap items-start gap-4 mt-8">
-                        <p class="text-xl font-semibold leading-6">@text</p>
-                        <div class="text-base leading-6 text-justify">@largetext</div>
-                        <a href="/partners" class="tag m-initial dark:text-white">Click here</a>
-                    </div>
-                </face>
-                <face filter="valueID=3938201">
-                    <div class="flex flex-col flex-wrap items-start gap-4 mt-8">
-                        <p class="text-xl font-semibold leading-6">@text</p>
-                        <div class="text-base leading-6 text-justify">@largetext</div>
-                        <a href="/solutions" class="tag m-initial dark:text-white">Click here</a>
-                    </div>
-                </face>
-                <face filter="valueID=3938202">
-                    <div class="flex flex-col flex-wrap items-start gap-4 mt-8">
-                        <p class="text-xl font-semibold leading-6">@text</p>
-                        <div class="text-base leading-6 text-justify">@largetext</div>
-                        <a href="/About-Basisfly" class="tag m-initial dark:text-white">Click here</a>
-                    </div>
-                </face>
-            </basis>
-        </div>
-    </section>
-
+    <section class="container flex flex-col items-center justify-center text-center gap-4 mt-100 pt-20 dark:text-white px-2.5 py-9 m-auto"><basis core="print" datamembername="db.reuquest"><face filter="TypeID=129"><h1 class="text-2xl leading-8 font-bold">@Answer</h1></face></basis><basis core="print" datamembername="db.reuquest"><face filter="TypeID=128"><h2 class="font-medium text-xs leading-3">@Answer</h2></face></basis></section>
+    <basis core="call" file="submit-email.bc" method="post" triggers="cms.email" run="atclient" if="{##cms.email.run|(false)##}" name="{##cms.email.name##}" email="{##cms.email.email##}" phone="{##cms.email.phone##}" company="{##cms.email.company##}" business="{##cms.email.business##}" website="{##cms.email.website##}" comments="{##cms.email.comments##}" country="{##cms.email.country##}"></basis>
+    <section class="container flex flex-col items-center justify-center text-center gap-4 mt-100 pt-20 dark:text-white px-2.5 py-9"><div class="box-Form-Req px-20 py-32 bottom-0 w-full text-left"><basis core="schema" run="atclient" schemaUrl="/schema/domainform" schemaUrl="/72B84A8B-80E2-4636-977F-243E512CCD75/EC643A48-94B2-45E1-865E-332020821744/en/Request-a-Demo" displayMode="new" button="[data-btn-add]" schemaCallback="getSchemaAsync" resultSourceId="form.submit" OnRendered="formRendered"></basis><basis core="callback" run="AtClient" triggers="form.submit" method="onSource"></basis><Basis core="api" url="/schema/domainform/72B84A8B-80E2-4636-977F-243E512CCD75/fa/editobject" method="post" run="atclient" body="object_edit={##edit.object.value##}&captcha={##edit.object.captcha##}&captchaid={##edit.object.captchaid##}" content-type="application/x-www-form-urlencoded" triggers="edit.object" if="{##edit.object|(false)##}" OnProcessed="OnProcessedEditObject"></Basis><div id="captchaContainer" class="captchaContainerclass captcha-sefaresh" data-bc-answer-container="" data-bc-schema-info-multi="0" data-bc-schema-info-word="58" data-bc-schema-info-part="1" data-bc-schema-info-part-0-type="text"><basis core="dbsource" source="trust_login" name="captcha" run="atclient" triggers="captcha.refresh"><member name="code1" type="scalar" request="captcha"></member></basis><div data-bc-title-container=""><span data-bc-question-title="" data-bc-schema-info-prpid="2228" data-sys-text="">Captcha</span></div><basis datamembername="captcha.code1" core="print" run="atclient" OnRendered="captchaRendered"><face><script type="text/template"><img src="https://www.basispanel.ir/@captcha@" width="120" height="60" alt="captcha form" /><div class="flex flex-row items-center relative"><input type="text" class="contactUsInput codeinputm" name="captcha" maxlength="4" /><input type="hidden" name="captchaid" value="@captcha@" /><div class="absolute absolute right-[1px] top-[1px] flex flex-row-reverse items-center gap-2"><svg class="cursor-pointer" width="35" height="25" onclick="refreshCaptcha()" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.6498 3.34999C12.0198 1.71999 9.70978 0.779992 7.16978 1.03999C3.49978 1.40999 0.479777 4.38999 0.0697772 8.05999C-0.480223 12.91 3.26978 17 7.99978 17C11.1898 17 13.9298 15.13 15.2098 12.44C15.5298 11.77 15.0498 11 14.3098 11C13.9398 11 13.5898 11.2 13.4298 11.53C12.2998 13.96 9.58978 15.5 6.62978 14.84C4.40978 14.35 2.61978 12.54 2.14978 10.32C1.30978 6.43999 4.25978 2.99999 7.99978 2.99999C9.65978 2.99999 11.1398 3.68999 12.2198 4.77999L10.7098 6.28999C10.0798 6.91999 10.5198 7.99999 11.4098 7.99999H14.9998C15.5498 7.99999 15.9998 7.54999 15.9998 6.99999V3.40999C15.9998 2.51999 14.9198 2.06999 14.2898 2.69999L13.6498 3.34999Z" fill="#000000" /></svg></div></div></script></face></basis></div><div class="flex flex-row items-center gap-3 mt-8 2xl:flex-nowrap lg:flex-wrap"><div onclick="formClickHandler()" data-btn-add class="button-wrap-p w-fit relative"><button>Send Form</button></div><p class="alert hidden font-[500] text-[20px] leading-[25.2px] text-yellow"></p></div></div><div class="flex flex-col flex-wrap items-start gap-10 w-full dark:text-white mt-20"><p class="t-h2 w-full border-solid border-b border-slate-600 text-left pb-2">Useful Links</p><p class="text-xl font-semibold leading-6">Contact</p><a href="mailto:info@basisfly.ae" class="text-base leading-6">info@basisfly.ae</a><a href="tel:+971544959591" class="text-base leading-6">+971 544 95 95 91 </a><a href="tel:+971504959591" class="text-base leading-6">+971 504 95 95 91 </a><basis core="print" datamembername="db.reuquest"><face filter="valueID=3938199"><div class="flex flex-col flex-wrap items-start gap-4 mt-8"><p class="text-xl font-semibold leading-6">@text</p><div class="text-base leading-6 text-justify">@largetext</div><a href="/products" aria-label="products" class="tag m-initial !text-black dark:text-white">View more products </a></div></face><face filter="valueID=3938200"><div class="flex flex-col flex-wrap items-start gap-4 mt-8"><p class="text-xl font-semibold leading-6">@text</p><div class="text-base leading-6 text-justify">@largetext</div><a href="/suppliers" aria-label="suppliers" class="tag m-initial !text-black dark:text-white">View more suppliers </a></div></face><face filter="valueID=3938201"><div class="flex flex-col flex-wrap items-start gap-4 mt-8"><p class="text-xl font-semibold leading-6">@text</p><div class="text-base leading-6 text-justify">@largetext</div><a href="/solutions" aria-label="solutions" class="tag m-initial !text-black dark:text-white">View all solutions </a></div></face><face filter="valueID=3938202"><div class="flex flex-col flex-wrap items-start gap-4 mt-8"><p class="text-xl font-semibold leading-6">@text</p><div class="text-base leading-6 text-justify">@largetext</div><a href="/about-basisfly" aria-label="about-basisfly" class="tag m-initial !text-black dark:text-white">More about Basisfly </a></div></face></basis></div></section>
     <basis core="call" file="footer.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
-
     <!-- ----- Alert ----- -->
-    <section
-        class="alertOverlay hidden flex-row items-center justify-center w-screen h-screen fixed left-0 right-0 top-0 bottom-0 bg-black opacity-25">
-    </section>
-    <div href="/request" class="alertBtnF button-wrap-s2 hidden">
-        <button>The entered information is not correct. Please correct and try again.</button>
-    </div>
-    <div href="/request" class="alertBtnS button-wrap-s2 hidden">
-        <button class="flex flex-col items-center justify-center gap-3">Your request has been registered
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M13.5 15.583L20.2875 20.6747C20.708 20.99 21.2322 21.1348 21.7549 21.0799C22.2777 21.0251 22.7604 20.7746 23.1062 20.3788L36.4167 5.16633"
-                    stroke="#FFF" stroke-width="2" stroke-linecap="round" />
-                <path
-                    d="M38.5 19.7497C38.5001 23.6674 37.2729 27.4868 34.991 30.6714C32.709 33.8559 29.4868 36.2457 25.7769 37.505C22.0671 38.7643 18.0559 38.8299 14.3069 37.6925C10.5578 36.5552 7.25922 34.2721 4.87432 31.1639C2.48942 28.0556 1.13805 24.2784 1.01002 20.3628C0.881984 16.4471 1.98371 12.5897 4.16047 9.33229C6.33722 6.07489 9.47964 3.58117 13.1464 2.20136C16.8131 0.821556 20.82 0.62498 24.6042 1.63924"
-                    stroke="#FFF" stroke-width="2" stroke-linecap="round" />
-            </svg>
-        </button>
-    </div>
+    <section class="alertOverlay hidden flex-row items-center justify-center w-screen h-screen fixed left-0 right-0 top-0 bottom-0 bg-black opacity-25"></section>
+    <div href="/request-demo" class="alertBtnF button-wrap-s2 hidden"><button>The entered information is not correct. Please correct and try again.</button></div>
+    <div href="/request-demo" class="alertBtnS button-wrap-s2 hidden"><button class="flex flex-col items-center justify-center gap-3">Your request has been registered <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 15.583L20.2875 20.6747C20.708 20.99 21.2322 21.1348 21.7549 21.0799C22.2777 21.0251 22.7604 20.7746 23.1062 20.3788L36.4167 5.16633" stroke="#FFF" stroke-width="2" stroke-linecap="round" /><path d="M38.5 19.7497C38.5001 23.6674 37.2729 27.4868 34.991 30.6714C32.709 33.8559 29.4868 36.2457 25.7769 37.505C22.0671 38.7643 18.0559 38.8299 14.3069 37.6925C10.5578 36.5552 7.25922 34.2721 4.87432 31.1639C2.48942 28.0556 1.13805 24.2784 1.01002 20.3628C0.881984 16.4471 1.98371 12.5897 4.16047 9.33229C6.33722 6.07489 9.47964 3.58117 13.1464 2.20136C16.8131 0.821556 20.82 0.62498 24.6042 1.63924" stroke="#FFF" stroke-width="2" stroke-linecap="round" /></svg></button></div>
     <!-- ----------------- -->
     <basis core="call" file="script.inc" lid="2" />
     <script>
@@ -267,30 +128,31 @@
 
             document.querySelector(".box-Form-Req").style.height = "auto";
 
-            document.querySelector("[data-bc-schema-info-word='849'] input[type='text']").placeholder = "Name And Surname";
+            document.querySelector("[data-bc-schema-info-word='856'] input[type='text']").placeholder = "Name And Surname";
             document.querySelector("[data-bc-schema-info-word='106'] input[type='text']").placeholder = "Email Address";
             document.querySelector("[data-bc-schema-info-word='597'] input[type='text']").placeholder = "Phone Number";
             document.querySelector("[data-bc-schema-info-word='596'] input[type='text']").placeholder = "Company Name";
             document.querySelector("[data-bc-schema-info-word='838'] input[type='text']").placeholder = "Business type";
             document.querySelector("[data-bc-schema-info-word='619'] input[type='text']").placeholder = "Website";
-            document.querySelector("[data-bc-schema-info-word='844'] _textarea").placeholder = "Description";
+            document.querySelector("[data-bc-schema-info-word='760'] input[type='text']").placeholder = "Country";
+            document.querySelector("[data-bc-schema-info-word='855'] input[type='text']").placeholder = "Description";
 
-            document.querySelectorAll("[type='radio']").forEach(element => {
-                let value_target = element.value;
-                element.id = `r${value_target}`;
-                let id_target = element.id;
-                let parent_target = element.parentElement;
-                let next_side_target = element.nextSibling;
-                let text_target = element.nextSibling;
-                next_side_target.remove();
+            // document.querySelectorAll("[type='radio']").forEach(element => {
+            //     let value_target = element.value;
+            //     element.id = `r${value_target}`;
+            //     let id_target = element.id;
+            //     let parent_target = element.parentElement;
+            //     let next_side_target = element.nextSibling;
+            //     let text_target = element.nextSibling;
+            //     next_side_target.remove();
 
-                if (value_target == 0) {
-                    element.parentElement.remove();
-                } else {
-                    element.insertAdjacentHTML("afterend", `<label for="${id_target}">${text_target.textContent.trim()}</label>`);
-                }
-            })
-            document.querySelectorAll("[type='radio']")[0].checked = true;
+            //     if (value_target == 0) {
+            //         element.parentElement.remove();
+            //     } else {
+            //         element.insertAdjacentHTML("afterend", `<label for="${id_target}">${text_target.textContent.trim()}</label>`);
+            //     }
+            // })
+            // document.querySelectorAll("[type='radio']")[0].checked = true;
         }
         function formClickHandler() {
             if (document.querySelector(".contactUsInput").value) {
@@ -332,142 +194,7 @@
 
 </body>
 <style>
-    legend {
-        display: none !important;
-    }
-
-    [data-bc-title-container],
-    [data-bc-title-container] [data-bc-question-title] {
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 25.2px;
-        margin-left: 0px !important;
-        position: relative;
-    }
-
-
-    .qusReq [data-bc-title-container] [data-bc-question-title]::after {
-        content: '*';
-        position: absolute;
-        right: -15px;
-        top: -5px;
-        color: #FF0000;
-    }
-
-    [data-bc-question] {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    [data-bc-answer-container],
-    [data-bc-answer-collection],
-    [data-bc-answer],
-    [data-bc-part-container],
-    [data-bc-schema-info-part="1"] [data-bc-part-related-cell],
-    [data-bc-answer-container] input[type="text"],
-    [data-bc-answer-container] _textarea {
-        width: 100% !important;
-        /* height: 30px !important; */
-    }
-
-    [data-bc-part-related-cell] {
-        margin-left: 0px !important;
-    }
-
-    [data-bc-answer-container] input[type="text"],
-    [data-bc-answer-container] _textarea {
-        padding: 0.5rem 1rem 1rem 0rem !important;
-        font-weight: 500 !important;
-        font-size: 15px !important;
-        line-height: 25.2px !important;
-        background-color: #FFFFFF !important;
-        border-radius: 0px !important;
-        color: #000000 !important;
-        border: none;
-        border-bottom: 1px solid #6F6F6F !important;
-        margin-top: 10px;
-    }
-
-    [data-bc-answer-container] input[type="text"]:focus,
-    [data-bc-answer-container] _textarea:focus {
-        outline: none !important;
-        box-shadow: none !important;
-        background-color: #FFFFFF !important;
-        border-color: #000000 !important;
-    }
-
-    [data-bc-section] {
-        margin-bottom: 0px !important;
-        padding: 0px !important;
-    }
-
-    ::placeholder {
-        color: #6F6F6F !important;
-        opacity: 1;
-        /* Firefox */
-    }
-
-    [data-bc-schema-column] {
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-    }
-
-    #captchaContainer {
-        margin-top: 32px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    _textarea {
-        resize: none !important;
-    }
-
-    [type="radio"] {
-        display: none;
-    }
-
-    [type="radio"]:checked+label {
-        font-weight: bold;
-        border-bottom: 3px solid #000;
-    }
-
-    [type="radio"]+label {
-        cursor: pointer;
-    }
-
-    [data-bc-part-related-cell] [data-bc-part-radio] {
-        padding: 32px 0 0 0 !important;
-        border: unset !important;
-        border-radius: unset !important;
-    }
-
-    [data-sys-part-checkbox] [data-bc-items] {
-        display: flex;
-        flex-direction: row;
-        gap: 40px;
-        align-items: center;
-        padding-bottom: 6px;
-        border-bottom: 1px solid #6F6F6F;
-    }
-
-    [data-bc-validation-part] {
-        display: none !important;
-    }
-
-    [data-bc-answer-container] [data-bc-invalid] input[type="text"],
-    [data-bc-answer-container] [data-bc-invalid] input[type="password"],
-    [data-bc-answer-container] [data-bc-invalid] input[type="time"],
-    [data-bc-answer-container] [data-bc-invalid] input[type="color"],
-    [data-bc-answer-container] [data-bc-invalid] input[type="file"],
-    [data-bc-answer-container] [data-bc-invalid] select,
-    [data-bc-answer-container] [data-bc-invalid] _textarea {
-        border: none;
-        border-bottom: 1px solid #6F6F6F !important;
-        box-shadow: none !important;
-    }
+.box-Form-Req{min-height: 1166px ;}
+legend{ display: none !important;} [data-bc-title-container], [data-bc-title-container] [data-bc-question-title]{ font-weight: 500; font-size: 15px; line-height: 25.2px; margin-left: 0px !important; position: relative;} .qusReq [data-bc-title-container] [data-bc-question-title]::after{ content: '*'; position: absolute; right: -15px; top: -5px; color: #FF0000;} [data-bc-question]{ display: flex; flex-direction: column; align-items: flex-start;} [data-bc-answer-container], [data-bc-answer-collection], [data-bc-answer], [data-bc-part-container], [data-bc-schema-info-part="1"] [data-bc-part-related-cell], [data-bc-answer-container] input[type="text"], [data-bc-answer-container] _textarea{ width: 100% !important; } [data-bc-part-related-cell]{ margin-left: 0px !important;} [data-bc-answer-container] input[type="text"], [data-bc-answer-container] _textarea{ padding: 0.5rem 1rem 1rem 0rem !important; font-weight: 500 !important; font-size: 15px !important; line-height: 25.2px !important; background-color: #FFFFFF !important; border-radius: 0px !important; color: #000000 !important; border: none; border-bottom: 1px solid #6F6F6F !important; margin-top: 10px;} [data-bc-answer-container] input[type="text"]:focus, [data-bc-answer-container] _textarea:focus{ outline: none !important; box-shadow: none !important; background-color: #FFFFFF !important; border-color: #000000 !important;} [data-bc-section]{ margin-bottom: 0px !important; padding: 0px !important;} ::placeholder{ color: #6F6F6F !important; opacity: 1; } [data-bc-schema-column]{ display: flex; flex-direction: column; gap: 32px;} #captchaContainer{ margin-top: 32px; display: flex; flex-direction: column; gap: 8px;} _textarea{ resize: none !important;} [type="radio"]{ display: none;} [type="radio"]:checked+label{ font-weight: bold; border-bottom: 3px solid #000;} [type="radio"]+label{ cursor: pointer;} [data-bc-part-related-cell] [data-bc-part-radio]{ padding: 32px 0 0 0 !important; border: unset !important; border-radius: unset !important;} [data-sys-part-checkbox] [data-bc-items]{ display: flex; flex-direction: row; gap: 40px; align-items: center; padding-bottom: 6px; border-bottom: 1px solid #6F6F6F;} [data-bc-validation-part]{ display: none !important;} [data-bc-answer-container] [data-bc-invalid] input[type="text"], [data-bc-answer-container] [data-bc-invalid] input[type="password"], [data-bc-answer-container] [data-bc-invalid] input[type="time"], [data-bc-answer-container] [data-bc-invalid] input[type="color"], [data-bc-answer-container] [data-bc-invalid] input[type="file"], [data-bc-answer-container] [data-bc-invalid] select, [data-bc-answer-container] [data-bc-invalid] _textarea{ border: none; border-bottom: 1px solid #6F6F6F !important; box-shadow: none !important;}
 </style>
-
 </html>

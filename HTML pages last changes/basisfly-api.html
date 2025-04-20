@@ -1,44 +1,28 @@
-<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="[##cms.query.id##]"
-><member name="news-pre" type="view"/>
-</basis>
-
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="[##cms.query.id##]"><member name="view" type="view"/></basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" catid="[##cms.query.catid##]"><member name="API" type="list" link="basisfly-api" propertyid="" size="269x112" /></basis>
+<basis core="dbsource" source="basiscore" name="db" lid="2" mid="1"><member request="cat" type="tree" name="suppliers" parentid="214120" postsql="select * from [db.suppliers] where catid in([##cms.query.catid##]) " /></basis>
+<basis core="dbsource" name="db" source="media" lid="[##cms.query.lid|(2)##]" sourcemid="1" usedforid="[##cms.query.id##]"><member name="apiGallery" type="list" format="4" /></basis>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="[##cms.seo.description##]">
-    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
-        <member type="list" name="list" request="taglist" preview=""></member>
-    </basis>
-    <basis core="print" datamembername="tag.list">
-        <face filter="key='canonical'">
-            <link rel="canonical" href="@value" />
-        </face>
-        <face>
-            <meta property="@key" content="@value" />
-        </face>
-    </basis>
+    <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]"><member type="list" name="list" request="taglist" preview=""></member></basis>
+    <basis core="print" datamembername="tag.list"><face filter="key='canonical'"><link rel="canonical" href="@value" /></face><face><meta property="@key" content="@value" /></face></basis>
     <basis core="call" file="style.inc" lid="2" />
     <title>[##cms.seo.title##]</title>
 </head>
 
 <body class="dark:bg-dark">
     <basis core="call" file="header.inc" lid="2"></basis>
-    
-    <div
-        class="mt-100 bg-black w-full h-[60vh] flex flex-col items-start justify-center text-white gap-8 relative bg-cover bg-no-repeat bg-center"
-        
-        >
-        <img src="" class="w-full h-full object-cover" alt="">
-    </div>
-
-
-
-
-
+    <main>
+        <basis core="print" datamembername="db.apiGallery"><layout>@child </layout><face filter="ord in (1)"><div class="mt-100 bg-black w-full h-[60vh] flex flex-col items-start justify-center text-white gap-8 relative bg-cover bg-no-repeat bg-center" ><img loading="lazy" src="[##cms.cms.cdn##]/@largeIMG" class="w-full h-full object-cover" alt="@name"></div></face></basis>
+        <section class="mt-28 container"><basis core="print" datamembername="db.view"><layout><div class=" text-black gap-10 dark:text-white">@child </div></layout><face filter="typeid in (150 )"><h1 class="t-h1 mt-8">@text</h1></face><face filter="typeid in (129)"><div class="t-p1">@largetext</div></face><face filter="typeid in (250 )"><h2 class="t-h2 mt-8">@text</h2><div class="t-p1">@largetext</div></face></basis></section>
+        <section class="pb-40 pt-60 relative"><div id="footerProduct" class="absolute right-0 left-0 top-0 w-screen h-full"></div><div class="w-[30%] flex flex-col items-center mx-auto gap-8 text-center relative z-10 dark:text-white"><p class="leading-[40.32px] font-[600] text-[32px]">Request a Demo</p><p class="t-p1">Basisfly products & solutions, the <span class="t-p4">leading technology</span>for the travel market</p><a href="/request-demo" class="w-fit"><div class="button-wrap-p"><button>Request</button></div></a></div></section>
+        <section class="container py-20 flex flex-col items-center justify-center gap-10"><basis core="print" datamembername="db.suppliers"><face><img loading="lazy" src="[##cms.cms.cdn##]/@image" alt="@title"><h2 class="t-h2 dark:text-white">@title</h2></face></basis><basis core="print" datamembername="db.API"><layout><div class="grid xl:grid-cols-4 lg:grid-cols-3 gap-2">@child </div></layout><face filter="link LIKE '%basisfly-api%'"><div class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></div></face><face><a href="@link" class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></a></face></basis></section>
+    </main>
     <basis core="call" file="footer.inc" lid="2"></basis>
     <basis core="call" file="script.inc" lid="2"></basis>
 </body>

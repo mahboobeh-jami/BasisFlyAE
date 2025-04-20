@@ -1,118 +1,71 @@
-<basis
-  core="dbsource"
-  name="db"
-  source="basiscore"
-  lid="2"
-  mid="20"
-  catid="212816"
->
-  <member
-    size="141x47"
-    propertyid="8605,8606,8607,8608,3087445"
-    name="customers"
-    type="list"
-    order="ord"
-  />
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="20" catid="212816">
+  <member size="141x47" propertyid="8605,8606,8607,8608,3087445" name="customers" type="list" order="ord" />
 </basis>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="[##cms.seo.description##]" />
-    <link rel="canonical" href="[##cms.cms.full-url##]" />
-    <basis
-      core="dbsource"
-      source="hosting"
-      name="tag"
-      urlid="[##cms.seo.urlid##]"
-    >
-      <member type="list" name="list" request="taglist" preview=""></member>
-    </basis>
-    <basis core="print" datamembername="tag.list">
-      <face filter="key='canonical'">
-        <link rel="canonical" href="@value" />
-      </face>
-      <face>
-        <meta property="@key" content="@value" />
-      </face>
-    </basis>
-    <link
-      href="[##cms.cms.cdn##]/css/basisflyae-main-mobile.css"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <title>[##cms.seo.title##]</title>
-  </head>
-  <body class="dark:bg-dark">
-    <basis
-      core="call"
-      file="header.inc"
-      lid="2"
-      pageindex="[##cms.cms.pageindex##]"
-    ></basis>
 
-    <main class="clear-both flex flex-col gap-8">
-      <section class="container my-24 flex flex-col items-center gap-8">
-        <div class="flex flex-col gap-3 items-center w-full">
-          <h3 class="text-[40px] leading-[44.1px] font-bold dark:text-white">
-            customers
-          </h3>
-          <basis core="list" datamembername="db.customers">
-            <layout>
-              <div class="grid grid-cols-1 w-full px-11 gap-8 my-4">@child</div>
-            </layout>
-            <face>
-              <div class="w-full customer-card-wrapper">
-                <div class="w-full customer-card">
-                  <span
-                    class="flex w-full flex-col gap-3 items-center px-5 py-5 bg-white  dark:bg-dark2-imp"
-                  >
-                    <img
-                      class="mb-5"
-                      src="@00141X00047prp"
-                      width="141"
-                      height="47"
-                      alt="@prp_8605"
-                    />
-                    <div class="flex flex-col gap-3">
-                      <p class="text-base dark:text-white text-center text-zinc-900">
-                        @prp_8605
-                      </p>
-                      <div class="flex gap-1 items-center justify-center">
-                        <img
-                          class="!w-[33px]"
-                          src="@prp_8607"
-                          alt="@prp_8608"
-                          width="33"
-                          height="19"
-                        />
-                        <p class="text-zinc-800 dark:text-white ">@prp_8608</p>
-                      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="[##cms.seo.description##]" />
+  <link rel="canonical" href="[##cms.cms.full-url##]" />
+  <basis core="dbsource" source="hosting" name="tag" urlid="[##cms.seo.urlid##]">
+    <member type="list" name="list" request="taglist" preview=""></member>
+  </basis>
+  <basis core="print" datamembername="tag.list">
+    <face filter="key='canonical'">
+      <link rel="canonical" href="@value" />
+    </face>
+    <face>
+      <meta property="@key" content="@value" />
+    </face>
+  </basis>
+  <link href="[##cms.cms.cdn##]/css/basisflyae-main-mobile.css" type="text/css" rel="stylesheet" />
+  <title>[##cms.seo.title##]</title>
+</head>
+
+<body class="dark:bg-dark">
+  <basis core="call" file="header.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
+
+  <main class="clear-both flex flex-col gap-8">
+    <section class="container my-24 flex flex-col items-center gap-8">
+      <div class="flex flex-col gap-3 items-center w-full">
+        <h3 class="text-[40px] leading-[44.1px] font-bold dark:text-white">
+          customers
+        </h3>
+        <basis core="list" datamembername="db.customers">
+          <layout>
+            <div class="grid grid-cols-1 w-full px-11 gap-8 my-4">@child</div>
+          </layout>
+          <face>
+            <div class="w-full customer-card-wrapper">
+              <div class="w-full customer-card">
+                <span class="flex w-full flex-col gap-3 items-center px-5 py-5 bg-white  dark:bg-white">
+                  <img class="mb-5" src="@00141X00047prp" width="141" height="47" alt="@prp_8605" />
+                  <div class="flex flex-col gap-3">
+                    <p class="text-base  text-center text-zinc-900">
+                      @prp_8605
+                    </p>
+                    <div class="flex gap-1 items-center justify-center">
+                      <img class="!w-[33px]" src="@prp_8607" alt="@prp_8608" width="33" height="19" />
+                      <p class="text-zinc-800  ">@prp_8608</p>
                     </div>
-                    <a
-                      target="_blank"
-                      href="@prp_3087445"
-                      rel="nofollow"
-                      class="text-[#3B82F6] w-full text-center pt-3 border-t border-zinc-100"
-                    >
-                      @prp_8606
-                    </a>
-                  </span>
-                </div>
+                  </div>
+                  <a target="_blank" href="@prp_3087445" rel="nofollow"
+                    class="text-[#3B82F6] w-full text-center pt-3 border-t border-zinc-100">
+                    @prp_8606
+                  </a>
+                </span>
               </div>
-            </face>
-          </basis>
-        </div>
-      </section>
-    </main>
-    <basis
-      core="call"
-      file="footer.inc"
-      lid="2"
-      pageindex="[##cms.cms.pageindex##]"
-    ></basis>
-    <basis core="call" file="script.inc" lid="2" />
-  </body>
+            </div>
+          </face>
+        </basis>
+      </div>
+    </section>
+  </main>
+  <basis core="call" file="footer.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
+  <basis core="call" file="script.inc" lid="2" />
+</body>
+
 </html>

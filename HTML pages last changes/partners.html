@@ -3,7 +3,7 @@
 <basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2337278"><member name="partenrs" type="view" /></basis>
 <basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" catid="214121"><member name="flightAPI" type="list" link="basisfly-api" propertyid="" size="269x112" /></basis>
 <basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" catid="214122"><member name="hotelAPI" type="list" link="basisfly-api" propertyid="" size="269x112" /></basis>
-<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" catid="214123"><member name="otherAPI" type="list" link="basisfly-api" propertyid="" size="269x112" /></basis>
+<basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" catid="214184"><member name="otherAPI" type="list" link="basisfly-api" propertyid="" size="269x112" /></basis>
 <basis core="dbsource" source="basiscore" name="db" lid="2" mid="1"><member request="cat" type="tree" name="suppliers" parentid="214120" /></basis>
 
 <!DOCTYPE html>
@@ -28,15 +28,15 @@
     <section class="container pt-40 pb-20 flex flex-col items-center justify-center gap-4 dark:text-white"><img src="[##cms.cms.cdn##]/images/topic.svg" alt="topic"><p class="t-p2">ABOUT US</p><basis core="print" datamembername="db.partenrs"><face filter="RowNumber=6"><div class="text-center"><h2 class="t-h2">@text</h2></div><div class="text-center w-[60%]"><h2 class="t-p1">@largetext</h2></div></face></basis></section>
     <section class="container py-20 flex flex-col items-center justify-center gap-10">
         <basis core="print" datamembername="db.suppliers"><face filter="catid in(214121)"><img loading="lazy" src="[##cms.cms.cdn##]/@image" alt="@title"><h2 class="t-h2 dark:text-white">@title</h2></face></basis>
-        <basis core="print" datamembername="db.flightAPI"><layout><div class="grid xl:grid-cols-4 lg:grid-cols-3 gap-2">@child </div></layout><face><a href="@link" class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></a></face></basis>
+        <basis core="print" datamembername="db.flightAPI"><layout><div class="grid xl:grid-cols-4 lg:grid-cols-3 gap-2">@child </div></layout><face filter="link LIKE '%basisfly-api%'" ><div class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></div></face><face><a href="@link" class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></a></face></basis>
     </section>
     <section class="container py-20 flex flex-col items-center justify-center gap-10">
         <basis core="print" datamembername="db.suppliers"><face filter="catid in(214122)"><img loading="lazy" src="[##cms.cms.cdn##]/@image" alt="@title"><h2 class="t-h2 dark:text-white">@title</h2></face></basis>
-        <basis core="print" datamembername="db.hotelAPI"><layout><div class="grid xl:grid-cols-4 lg:grid-cols-3 gap-2">@child </div></layout><face><a href="@link" class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></a></face></basis>
+        <basis core="print" datamembername="db.hotelAPI"><layout><div class="grid xl:grid-cols-4 lg:grid-cols-3 gap-2">@child </div></layout><face filter="link LIKE '%basisfly-api%'"><div class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></div></face><face><a href="@link" class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></a></face></basis>
     </section>
     <section class="container py-20 flex flex-col items-center justify-center gap-10">
-        <basis core="print" datamembername="db.suppliers"><face filter="catid in(214123)"><img loading="lazy" src="[##cms.cms.cdn##]/@image" alt="@title"><h2 class="t-h2 dark:text-white">@title</h2></face></basis>
-        <basis core="print" datamembername="db.otherAPI"><layout><div class="grid xl:grid-cols-4 lg:grid-cols-3 gap-2">@child </div></layout><face><a href="@link" class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></a></face></basis>
+        <basis core="print" datamembername="db.suppliers"><face filter="catid in(214184)"><img loading="lazy" src="[##cms.cms.cdn##]/@image" alt="@title"><h2 class="t-h2 dark:text-white">@title</h2></face></basis>
+        <basis core="print" datamembername="db.otherAPI"><layout><div class="grid xl:grid-cols-4 lg:grid-cols-3 gap-2">@child </div></layout><face filter="link LIKE '%basisfly-api%'"><div class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></div></face><face><a href="@link" class="button-wrap-b3 w-fit"><section class="flex items-center justify-center"><img loading="lazy" src="[##cms.cms.cdn##]/@00269X00112prp" alt="@title"></section></a></face></basis>
     </section>
     <basis core="call" file="footer.inc" lid="2"></basis>
     <basis core="call" file="script.inc" lid="2"></basis>

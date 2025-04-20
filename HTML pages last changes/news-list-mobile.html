@@ -4,6 +4,7 @@
 <basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" catid="205735">
     <member name="news-list" size="390x240" propertyid="7244,7249,7247" type="list" order="date desc" request="catname" />
 </basis>
+
 <basis core="dbsource" name="db" source="basiscore" lid="2" mid="1" usedforid="2362592">
     <member name="last-news" size="1536X694" propertyid="7244,7249,7247" type="list" order="date desc" request="catname" />
 </basis>
@@ -109,68 +110,72 @@
             </article>
         </face>
     </basis>
+    <section class="container flex flex-col items-center justify-center gap-3 dark:text-white mb-4 px-2.5 py-3">
     <basis core="print" datamembername="db.news-list">
-        <layout>
-            <section class="container flex flex-col items-center justify-center gap-3 dark:text-white mb-4 px-2.5 py-3">@child</section></layout>
-            <face filter="link is null">
-                <article class="col-news w-full mb-5">
-                    <a href="/news?id=@id" class="block m-0-auto w-[300px] h-[420px] relative">
-                        <figure class="w-full h-[200px]">
-                            <img class="w-full h-full" src="[##cms.cms.cdn##]/@00390X00240prp" width="390" height="240" alt="@title"/>
-                        </figure>
-                        <header class="pt-3 px-4">
-                            <div class="flex flex-row-reverse items-center justify-between mb-3">
-                                <div class="flex flex-row-reverse items-center gap-4"><p class="t-p2">@prp_7247</p></div>
-                                <div class="flex flex-row items-center gap-2 text-gray">
-                                    <img src="[##cms.cms.cdn##]/images/topic-mobile.svg" width="11" height="12" alt="topic">
-                                    <p class="t-p2 text-gray">@Column1</p>
-                                    <p class="t-p2 text-gray">@prp_7249</p>
+               
+                <face filter="link is null">
+                    <article class="col-news w-full mb-5">
+                        <a href="/news?id=@id" class="block m-0-auto w-[300px] h-[420px] relative">
+                            <figure class="w-full h-[200px]">
+                                <img class="w-full h-full" src="[##cms.cms.cdn##]/@00390X00240prp" width="390" height="240" alt="@title"/>
+                            </figure>
+                            <header class="pt-3 px-4">
+                                <div class="flex flex-row-reverse items-center justify-between mb-3">
+                                    <div class="flex flex-row-reverse items-center gap-4"><p class="t-p2">@prp_7247</p></div>
+                                    <div class="flex flex-row items-center gap-2 text-gray">
+                                        <img src="[##cms.cms.cdn##]/images/topic-mobile.svg" width="11" height="12" alt="topic">
+                                        <p class="t-p2 text-gray">@Column1</p>
+                                        <p class="t-p2 text-gray">@prp_7249</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <h2 class="text-xl font-bold leading-6 ectText--2">@title</h2>
-                            <div class="mt-5">
-                                <p class="text-sm leading-5 ectText--2">@prp_7244</p>
-                            </div>
-                        </header>
-                        <footer class="pb-3 px-4 absolute bottom-0 left-0">
-                            <div class="flex flex-row-reverse items-center gap-4">
-                                <p class="text-base text-blue dark:text-white">read more</p>
-                                <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
-                            </div>
-                        </footer>
-                    </a>
-                </article>
-            </face>
-            <face>
-                <article class="col-news w-full mb-5">
-                    <a href="/@link" class="block m-0-auto w-[300px] h-[420px] relative">
-                        <figure class="w-full h-[200px]">
-                            <img class="w-full h-full" src="[##cms.cms.cdn##]/@00390X00240prp" width="390" height="240" alt="@title"/>
-                        </figure>
-                        <header class="pt-3 px-4">
-                            <div class="flex flex-row-reverse items-center justify-between mb-3">
-                                <div class="flex flex-row-reverse items-center gap-4"><p class="t-p2">@prp_7247</p></div>
-                                <div class="flex flex-row items-center gap-2 text-gray">
-                                    <img src="[##cms.cms.cdn##]/images/topic-mobile.svg" width="11" height="12" alt="topic">
-                                    <p class="t-p2 text-gray">@Column1</p>
-                                    <p class="t-p2 text-gray">@prp_7249</p>
+                                <h2 class="text-xl font-bold leading-6 ectText--2">@title</h2>
+                                <div class="mt-5">
+                                    <p class="text-sm leading-5 ectText--2">@prp_7244</p>
                                 </div>
-                            </div>
-                            <h2 class="text-xl font-bold leading-6 ectText--2">@title</h2>
-                            <div class="mt-5">
-                                <p class="text-sm leading-5 ectText--2">@prp_7244</p>
-                            </div>
-                        </header>
-                        <footer class="pb-3 px-4 absolute bottom-0 left-0">
-                            <div class="flex flex-row-reverse items-center gap-4">
-                                <p class="text-base text-blue dark:text-white">read more</p>
-                                <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
-                            </div>
-                        </footer>
-                    </a>
-                </article>
-            </face>
-    </basis>
+                            </header>
+                            <footer class="pb-3 px-4 absolute bottom-0 left-0">
+                                <div class="flex flex-row-reverse items-center gap-4">
+                                    <p class="text-base text-blue dark:text-white">read more</p>
+                                    <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
+                                </div>
+                            </footer>
+                        </a>
+                    </article>
+                </face>
+                <face>
+                    <article class="col-news w-full mb-5">
+                        <a href="/@link" class="block m-0-auto w-[300px] h-[420px] relative">
+                            <figure class="w-full h-[200px]">
+                                <img class="w-full h-full" src="[##cms.cms.cdn##]/@00390X00240prp" width="390" height="240" alt="@title"/>
+                            </figure>
+                            <header class="pt-3 px-4">
+                                <div class="flex flex-row-reverse items-center justify-between mb-3">
+                                    <div class="flex flex-row-reverse items-center gap-4"><p class="t-p2">@prp_7247</p></div>
+                                    <div class="flex flex-row items-center gap-2 text-gray">
+                                        <img src="[##cms.cms.cdn##]/images/topic-mobile.svg" width="11" height="12" alt="topic">
+                                        <p class="t-p2 text-gray">@Column1</p>
+                                        <p class="t-p2 text-gray">@prp_7249</p>
+                                    </div>
+                                </div>
+                                <h2 class="text-xl font-bold leading-6 ectText--2">@title</h2>
+                                <div class="mt-5">
+                                    <p class="text-sm leading-5 ectText--2">@prp_7244</p>
+                                </div>
+                            </header>
+                            <footer class="pb-3 px-4 absolute bottom-0 left-0">
+                                <div class="flex flex-row-reverse items-center gap-4">
+                                    <p class="text-base text-blue dark:text-white">read more</p>
+                                    <img src="[##cms.cms.cdn##]/images/arrow-mobile.svg" width="13" height="13" alt="arrow" class="dark:invert">
+                                </div>
+                            </footer>
+                        </a>
+                    </article>
+                </face>
+            </basis>
+            
+            </section>
+
+
     <button id="showMoreButton" class="block mb-5 text-base cursor-pointer m-auto" onclick="showMoreNews(this)"><span class="block clear-both text-center font-bold">Show more</span><img class="m-auto" src="[##cms.cms.cdn##]/images/scroll-icon-mobile.png" width="34" height="35" alt="scroll-icon"/></button>
     <basis core="call" file="footer.inc" lid="2" pageindex="[##cms.cms.pageindex##]"></basis>
     <script>

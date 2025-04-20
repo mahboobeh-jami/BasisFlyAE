@@ -73,9 +73,22 @@
                     </face>
                 </basis>
                 <basis core="print" datamembername="db.news-show">
-                    <face filter="typeid not in (150,144,159,160,161,162) and prpid not in (7244,7249,7247)">
+                    <layout>
+                        @child
+                    </layout>
+                    <face filter="typeid not in (150,144,159,160,161,162,200) and prpid not in (7244,7249,7247)">
                         <div class="t-h1">@text</div>
                         <div class="t-p1">@largetext</div>
+                    </face>
+                    <face filter="typeid in(200) and prpid in(3087649)">
+
+                        <div class="w-full">
+    
+                            <iframe width="892" height="500" src="@text" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    
+                        </div>
+    
+                          
                     </face>
                 </basis>
             </div>
@@ -124,6 +137,10 @@
                 </face>
             </basis>
         </section>
+
+
+
+
         <section class="alertOverlay hidden flex-row items-center justify-center w-screen h-screen fixed left-0 right-0 top-0 bottom-0 bg-black opacity-25"></section>
         <div href="/request.bc" class="alertBtnF button-wrap-s2 hidden">
             <button>Wrong or Invalid email address. Please correct and try again.</button>
